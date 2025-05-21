@@ -1,0 +1,35 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "animationFlappingLeft",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 2,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 2,
+  "curveData": {
+    "props": {
+      "angle": [
+        {
+          "frame": 0,
+          "value": 0,
+          "curve": [
+            0.4979166666666666,
+            -0.002083333333333215,
+            0.5124999999999998,
+            0.8927083333333333
+          ]
+        },
+        {
+          "frame": 1,
+          "value": 20
+        },
+        {
+          "frame": 2,
+          "value": 0
+        }
+      ]
+    }
+  },
+  "events": []
+}

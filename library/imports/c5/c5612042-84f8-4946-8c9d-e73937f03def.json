@@ -1,0 +1,41 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "animationButtonInventory",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 1,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "props": {
+      "position": [
+        {
+          "frame": 0.5166666666666667,
+          "value": [
+            -369.914,
+            -445.517,
+            0
+          ]
+        },
+        {
+          "frame": 0.8333333333333334,
+          "value": [
+            -369.914,
+            -236.75,
+            0
+          ]
+        },
+        {
+          "frame": 1,
+          "value": [
+            -369.914,
+            -282.777,
+            0
+          ]
+        }
+      ]
+    }
+  },
+  "events": []
+}
