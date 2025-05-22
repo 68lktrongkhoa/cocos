@@ -1,6 +1,6 @@
 {
   "ver": "2.3.3",
-  "uuid": "97d9872c-ca65-42e2-8163-8549c350479e",
+  "uuid": "d5814d7e-9aae-4312-9f08-3a2ba2b0c0f7",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -9,10 +9,10 @@
   "packable": true,
   "platformSettings": {},
   "subMetas": {
-    "BasicFrame_Hexagon_68": {
+    "IconSet_Role_Warrior": {
       "ver": "1.0.4",
-      "uuid": "1cccb454-a557-43ab-a689-2f42aa5a7f73",
-      "rawTextureUuid": "97d9872c-ca65-42e2-8163-8549c350479e",
+      "uuid": "e9398e01-0f6c-4a3e-8e64-558a41555bfd",
+      "rawTextureUuid": "d5814d7e-9aae-4312-9f08-3a2ba2b0c0f7",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -20,14 +20,14 @@
       "offsetY": 0,
       "trimX": 0,
       "trimY": 0,
-      "width": 68,
-      "height": 68,
-      "rawWidth": 68,
-      "rawHeight": 68,
+      "width": 73,
+      "height": 73,
+      "rawWidth": 73,
+      "rawHeight": 73,
       "borderTop": 0,
       "borderBottom": 0,
-      "borderLeft": 10,
-      "borderRight": 9,
+      "borderLeft": 0,
+      "borderRight": 0,
       "subMetas": {}
     }
   }

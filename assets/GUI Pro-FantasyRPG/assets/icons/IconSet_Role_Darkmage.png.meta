@@ -1,6 +1,6 @@
 {
   "ver": "2.3.3",
-  "uuid": "97d9872c-ca65-42e2-8163-8549c350479e",
+  "uuid": "24395b80-661a-421c-90fd-15b2c4ede039",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -9,10 +9,10 @@
   "packable": true,
   "platformSettings": {},
   "subMetas": {
-    "BasicFrame_Hexagon_68": {
+    "IconSet_Role_Darkmage": {
       "ver": "1.0.4",
-      "uuid": "1cccb454-a557-43ab-a689-2f42aa5a7f73",
-      "rawTextureUuid": "97d9872c-ca65-42e2-8163-8549c350479e",
+      "uuid": "9bda6595-36ff-4eb7-adca-8b6dc656038d",
+      "rawTextureUuid": "24395b80-661a-421c-90fd-15b2c4ede039",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -21,13 +21,13 @@
       "trimX": 0,
       "trimY": 0,
       "width": 68,
-      "height": 68,
+      "height": 78,
       "rawWidth": 68,
-      "rawHeight": 68,
+      "rawHeight": 78,
       "borderTop": 0,
       "borderBottom": 0,
-      "borderLeft": 10,
-      "borderRight": 9,
+      "borderLeft": 0,
+      "borderRight": 0,
       "subMetas": {}
     }
   }
