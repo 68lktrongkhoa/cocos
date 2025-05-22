@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "IconSet_Role_Assassin",
+    "texture": "f4dd3574-0173-4746-9200-7e630cdd9f56",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      78,
+      68
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      78,
+      68
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "IconSet_Role_Paladin",
+    "texture": "d7596a2e-12ab-41b6-81d7-3b31b38a96ca",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      95,
+      72
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      95,
+      72
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

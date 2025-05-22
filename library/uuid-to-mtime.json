@@ -420,12 +420,12 @@
     "relativePath": "model/primitives.fbx"
   },
   "29f52784-2fca-467b-92e7-8fd9ef8c57b7": {
-    "asset": 1747809082844,
+    "asset": 1747879015723,
     "meta": 1747641938022,
     "relativePath": "Scene"
   },
   "4dcb52fc-3917-4e42-8dbb-727af18f5cce": {
-    "asset": 1747801268796,
+    "asset": 1747879015706,
     "meta": 1747713273902,
     "relativePath": "Animation"
   },
@@ -460,7 +460,7 @@
     "relativePath": "Animation/animationButtonHeros.anim"
   },
   "542b090a-ed77-492e-87e7-1c695b04ea49": {
-    "asset": 1747801753786,
+    "asset": 1747879015706,
     "meta": 1747727311373,
     "relativePath": "GUI Pro-FantasyRPG"
   },
@@ -495,12 +495,12 @@
     "relativePath": "Animation/animationZoom.anim"
   },
   "73d29221-d6cf-4b91-8437-531ce8a71ef6": {
-    "asset": 1747735593635,
+    "asset": 1747879015718,
     "meta": 1747734116747,
     "relativePath": "GUI Pro-FantasyRPG/assets"
   },
   "39590f1a-c9da-4004-95f9-93c23b3215b8": {
-    "asset": 1747734249102,
+    "asset": 1747879015716,
     "meta": 1747734141507,
     "relativePath": "GUI Pro-FantasyRPG/assets/background"
   },
@@ -510,7 +510,7 @@
     "relativePath": "GUI Pro-FantasyRPG/assets/background/BackGround_Sample_03_Home_1920.png"
   },
   "8569c177-8eff-4e4a-87c0-ddd3bc0333df": {
-    "asset": 1747808784897,
+    "asset": 1747879015718,
     "meta": 1747734252657,
     "relativePath": "GUI Pro-FantasyRPG/assets/icons"
   },
@@ -546,7 +546,7 @@
   },
   "97d9872c-ca65-42e2-8163-8549c350479e": {
     "asset": 1747734431924,
-    "meta": 1747734508575,
+    "meta": 1747888281035,
     "relativePath": "GUI Pro-FantasyRPG/assets/frame/BasicFrame_Hexagon_68.png"
   },
   "9716bdc1-c7a6-4b84-989a-9e7fffb9e02b": {
@@ -702,17 +702,17 @@
   "4422017d-f134-46bb-9693-0adbf690dd2c": {
     "asset": 1747735695316,
     "meta": 1747735589652,
-    "relativePath": "GUI Pro-FantasyRPG/assets/sliver"
+    "relativePath": "GUI Pro-FantasyRPG/assets/image/sliver"
   },
   "cd97ec73-9f6a-4e6f-acab-d472367abbbb": {
     "asset": 1747735595372,
     "meta": 1747735618925,
-    "relativePath": "GUI Pro-FantasyRPG/assets/sliver/Slider_Level_Slider_Border.png"
+    "relativePath": "GUI Pro-FantasyRPG/assets/image/sliver/Slider_Level_Slider_Border.png"
   },
   "2e0845ac-de58-4b5a-bb99-124afa0a16c2": {
     "asset": 1747735695307,
     "meta": 1747735695355,
-    "relativePath": "GUI Pro-FantasyRPG/assets/sliver/Slider_LevelProfile_SliderTop_Fill_SingleDemo.png"
+    "relativePath": "GUI Pro-FantasyRPG/assets/image/sliver/Slider_LevelProfile_SliderTop_Fill_SingleDemo.png"
   },
   "d09c9c8e-df35-4651-9f29-f1221afa6c43": {
     "asset": 1747794385091,
@@ -729,45 +729,10 @@
     "meta": 1747808784923,
     "relativePath": "GUI Pro-FantasyRPG/assets/icons/icon_equip_sword.png"
   },
-  "2d76b5bb-2236-438c-ad19-8ff3a6d64d3b": {
-    "asset": 1747824113046,
-    "meta": 1747824113069,
-    "relativePath": "Scene/Room.fire"
-  },
   "ed63c8ea-aed9-4a1e-956d-b4244687bae4": {
-    "asset": 1747809191110,
+    "asset": 1747879015724,
     "meta": 1747809173254,
     "relativePath": "Script"
-  },
-  "55a7b6e7-53f2-4022-b6c0-f989c9077952": {
-    "asset": 1747811189705,
-    "meta": 1747811189707,
-    "relativePath": "GUI Pro-FantasyRPG/assets/sound"
-  },
-  "70a589e4-7def-46cb-9f8d-d9de8b275870": {
-    "asset": 1747811222211,
-    "meta": 1747811222210,
-    "relativePath": "GUI Pro-FantasyRPG/Sound"
-  },
-  "2e952d78-55e5-4298-b627-6abfae08564a": {
-    "asset": 1747811222195,
-    "meta": 1747811222233,
-    "relativePath": "GUI Pro-FantasyRPG/Sound/bgm.mp3"
-  },
-  "f6d0478a-06e4-4bdc-af26-b908d5409b66": {
-    "asset": 1747811222193,
-    "meta": 1747811222235,
-    "relativePath": "GUI Pro-FantasyRPG/Sound/click.mp3"
-  },
-  "81b60e2d-8289-4a1e-98f0-1bdef4204e98": {
-    "asset": 1747811222194,
-    "meta": 1747811222237,
-    "relativePath": "GUI Pro-FantasyRPG/Sound/coin_counting.mp3"
-  },
-  "6018ddc5-994b-4cda-bb80-ab3ef0bf49e5": {
-    "asset": 1747811511156,
-    "meta": 1747811521612,
-    "relativePath": "Script/soundController.js"
   },
   "c45eea54-02b5-4aaa-9f0d-81fb729f9c75": {
     "asset": 1747812632447,
@@ -804,59 +769,274 @@
     "meta": 1747817205777,
     "relativePath": "GUI Pro-FantasyRPG/assets/icons/icon_equip_shield.png"
   },
-  "705d0832-cd56-4c38-913e-e24f766e950a": {
-    "asset": 1747818508253,
-    "meta": 1747818508373,
-    "relativePath": "GUI Pro-FantasyRPG/assets/background/BackGround_Sample_06_Play_1920.png"
-  },
-  "edb0b682-837a-4f90-8390-40fdf2c2db68": {
-    "asset": 1747818655058,
-    "meta": 1747818655156,
-    "relativePath": "GUI Pro-FantasyRPG/assets/background/BackGround_Sample_04_Character_1920.png"
-  },
-  "9f4f4bbe-80f2-4dff-a012-185a54ffbd9c": {
-    "asset": 1747818797114,
-    "meta": 1747818797958,
-    "relativePath": "GUI Pro-FantasyRPG/assets/icons/BackGround_Sample_04_Character_1920.png"
-  },
-  "de41c757-aa5e-40c7-a80c-0d374a6f1b9d": {
-    "asset": 1747818832557,
-    "meta": 1747818832559,
-    "relativePath": "GUI Pro-FantasyRPG/assets/image"
-  },
-  "5a1bc708-7257-4c1b-907a-0cb7c599fe8d": {
-    "asset": 1747818842331,
-    "meta": 1747818842332,
-    "relativePath": "GUI Pro-FantasyRPG/assets/image/figure"
-  },
-  "37425fcf-282a-4c29-b0ce-0ed39bb91b9c": {
-    "asset": 1747818858082,
-    "meta": 1747818858137,
-    "relativePath": "GUI Pro-FantasyRPG/assets/image/figure/Character_Sample_01_l.png"
-  },
-  "247bcf55-4369-4136-bd8e-6ae9b9369df1": {
-    "asset": 1747819251793,
-    "meta": 1747819251800,
-    "relativePath": "GUI Pro-FantasyRPG/assets/image/demo"
-  },
-  "9fe6fea9-5bd3-4cd9-a9ff-724009ef7cb9": {
-    "asset": 1747819255269,
-    "meta": 1747819255316,
-    "relativePath": "GUI Pro-FantasyRPG/assets/image/demo/Character_Platform.png"
+  "27a02ee8-1ff5-4eb1-871f-6aee537f4e0b": {
+    "asset": 1747879015705,
+    "meta": 1747879087171,
+    "relativePath": "Animation/animationAddPlayer01.anim"
   },
   "163b63dd-8b17-40ad-ae65-75ccb9d24675": {
-    "asset": 1747819811986,
-    "meta": 1747819811989,
+    "asset": 1747879015705,
+    "meta": 1747879087173,
     "relativePath": "Animation/animationCircle.anim"
   },
-  "6811d6b8-f133-4d5f-bf8d-a66026b89745": {
-    "asset": 1747820183592,
-    "meta": 1747820186461,
+  "edb0b682-837a-4f90-8390-40fdf2c2db68": {
+    "asset": 1747879015712,
+    "meta": 1747879087271,
+    "relativePath": "GUI Pro-FantasyRPG/assets/background/BackGround_Sample_04_Character_1920.png"
+  },
+  "705d0832-cd56-4c38-913e-e24f766e950a": {
+    "asset": 1747879015715,
+    "meta": 1747879087292,
+    "relativePath": "GUI Pro-FantasyRPG/assets/background/BackGround_Sample_06_Play_1920.png"
+  },
+  "de41c757-aa5e-40c7-a80c-0d374a6f1b9d": {
+    "asset": 1747879015720,
+    "meta": 1747879015718,
+    "relativePath": "GUI Pro-FantasyRPG/assets/image"
+  },
+  "70a589e4-7def-46cb-9f8d-d9de8b275870": {
+    "asset": 1747879015710,
+    "meta": 1747879015706,
+    "relativePath": "GUI Pro-FantasyRPG/Sound"
+  },
+  "9f4f4bbe-80f2-4dff-a012-185a54ffbd9c": {
+    "asset": 1747879015717,
+    "meta": 1747879087397,
+    "relativePath": "GUI Pro-FantasyRPG/assets/icons/BackGround_Sample_04_Character_1920.png"
+  },
+  "6018ddc5-994b-4cda-bb80-ab3ef0bf49e5": {
+    "asset": 1747879015725,
+    "meta": 1747879087428,
+    "relativePath": "Script/soundController.js"
+  },
+  "33a9388f-e723-4bcc-8a41-c3ddc5f89caa": {
+    "asset": 1747879015719,
+    "meta": 1747879087143,
+    "relativePath": "GUI Pro-FantasyRPG/assets/image/demo"
+  },
+  "d1eef665-f824-4ee5-9860-340b70817e02": {
+    "asset": 1747879015721,
+    "meta": 1747879087151,
+    "relativePath": "GUI Pro-FantasyRPG/assets/image/figure"
+  },
+  "18771c1f-65de-4261-a0a2-ba83fa22a53c": {
+    "asset": 1747879015719,
+    "meta": 1747879113772,
+    "relativePath": "GUI Pro-FantasyRPG/assets/image/demo/Character_Platform.png"
+  },
+  "a1640c47-0d2e-41ba-a64a-0d576929c839": {
+    "asset": 1747879015708,
+    "meta": 1747879113775,
+    "relativePath": "GUI Pro-FantasyRPG/Sound/bgm.mp3"
+  },
+  "7f37a58e-e293-4355-85d8-aa731c4a1d49": {
+    "asset": 1747879015709,
+    "meta": 1747879113778,
+    "relativePath": "GUI Pro-FantasyRPG/Sound/click.mp3"
+  },
+  "d33ad9f4-efc6-4ead-ba78-6baa2ac8e95a": {
+    "asset": 1747879015709,
+    "meta": 1747879113780,
+    "relativePath": "GUI Pro-FantasyRPG/Sound/coin_counting.mp3"
+  },
+  "b7c75390-ba28-4cbd-a2cb-72567261b6fb": {
+    "asset": 1747879015721,
+    "meta": 1747879113792,
+    "relativePath": "GUI Pro-FantasyRPG/assets/image/figure/Character_Sample_01_l.png"
+  },
+  "d5814d7e-9aae-4312-9f08-3a2ba2b0c0f7": {
+    "asset": 1747879628983,
+    "meta": 1747879629060,
+    "relativePath": "GUI Pro-FantasyRPG/assets/icons/IconSet_Role_Warrior.png"
+  },
+  "72616960-1ecb-4c9a-bd20-159d5b0908d5": {
+    "asset": 1747880743211,
+    "meta": 1747880743247,
+    "relativePath": "GUI Pro-FantasyRPG/assets/icons/IconSet_Role_Gladiator.png"
+  },
+  "24395b80-661a-421c-90fd-15b2c4ede039": {
+    "asset": 1747880993854,
+    "meta": 1747880993897,
+    "relativePath": "GUI Pro-FantasyRPG/assets/icons/IconSet_Role_Darkmage.png"
+  },
+  "336b4074-52e6-46e0-9104-2cbfa1e9d110": {
+    "asset": 1747881009395,
+    "meta": 1747881010095,
+    "relativePath": "GUI Pro-FantasyRPG/assets/button/Button_Circle_01_Gray.Png"
+  },
+  "d7596a2e-12ab-41b6-81d7-3b31b38a96ca": {
+    "asset": 1747881299445,
+    "meta": 1747881299493,
+    "relativePath": "GUI Pro-FantasyRPG/assets/icons/IconSet_Role_Paladin.png"
+  },
+  "57311ed0-c00a-40eb-af88-5036889f22fb": {
+    "asset": 1747881300315,
+    "meta": 1747881301043,
+    "relativePath": "GUI Pro-FantasyRPG/assets/icons/IconSet_Role_Priest.png"
+  },
+  "ac60ae68-95e5-4ec5-9911-e74e175065c5": {
+    "asset": 1747881301800,
+    "meta": 1747881302475,
+    "relativePath": "GUI Pro-FantasyRPG/assets/icons/IconSet_Role_Ranger.png"
+  },
+  "7d6097b7-bde4-415f-a15f-8edef3c416f8": {
+    "asset": 1747881721927,
+    "meta": 1747881721974,
+    "relativePath": "GUI Pro-FantasyRPG/assets/icons/Icon_Bow.png"
+  },
+  "9cbed459-e61f-404f-936f-b54cc03f71fb": {
+    "asset": 1747882069653,
+    "meta": 1747882069708,
+    "relativePath": "GUI Pro-FantasyRPG/assets/icons/IconSet_Role_Wizard.png"
+  },
+  "f4dd3574-0173-4746-9200-7e630cdd9f56": {
+    "asset": 1747882678037,
+    "meta": 1747882678081,
+    "relativePath": "GUI Pro-FantasyRPG/assets/icons/IconSet_Role_Assassin.png"
+  },
+  "5a09b383-06be-49d4-b165-1cc925bfd451": {
+    "asset": 1747884876931,
+    "meta": 1747884876969,
+    "relativePath": "GUI Pro-FantasyRPG/assets/icons/icon_star.png"
+  },
+  "5f565a1b-4406-487c-9d5f-ad448ae7f92f": {
+    "asset": 1747886823158,
+    "meta": 1747886823200,
+    "relativePath": "GUI Pro-FantasyRPG/assets/button/Button_Rectangle_01_Convex_Green.Png"
+  },
+  "12e50097-550a-4eef-9d6b-17e2c395d7cd": {
+    "asset": 1747888740576,
+    "meta": 1747888764773,
+    "relativePath": "GUI Pro-FantasyRPG/assets/line/LineFrame_03.png"
+  },
+  "addc9de9-f093-4ac2-9937-bf05bf601d36": {
+    "asset": 1747889722944,
+    "meta": 1747889722983,
+    "relativePath": "GUI Pro-FantasyRPG/assets/icons/function_icon_life.png"
+  },
+  "207140f4-1f67-4ac4-8cbe-b21ea56db96d": {
+    "asset": 1747889954408,
+    "meta": 1747889954458,
+    "relativePath": "GUI Pro-FantasyRPG/assets/icons/function_icon_abstract.png"
+  },
+  "5e8390a8-f0d1-4d74-8773-e83f221e9634": {
+    "asset": 1747891179963,
+    "meta": 1747891180019,
+    "relativePath": "GUI Pro-FantasyRPG/assets/icons/function_icon_magic.png"
+  },
+  "d8d7e05c-5688-4d16-8d63-95390af4e9cd": {
+    "asset": 1747891292602,
+    "meta": 1747891292642,
+    "relativePath": "GUI Pro-FantasyRPG/assets/icons/function_icon_sword_1.png"
+  },
+  "082589e7-31bd-4077-9982-c253e1e688ff": {
+    "asset": 1747891697137,
+    "meta": 1747891697193,
+    "relativePath": "GUI Pro-FantasyRPG/assets/icons/function_icon_shield_magic.png"
+  },
+  "37d24bd2-847b-49fc-bc38-f1687e1c430a": {
+    "asset": 1747892890810,
+    "meta": 1747892890865,
+    "relativePath": "GUI Pro-FantasyRPG/assets/icons/function_icon_home_1.png"
+  },
+  "a09be1a1-50de-43c1-9a6b-11d0e8f4391d": {
+    "asset": 1747893768723,
+    "meta": 1747893768767,
+    "relativePath": "GUI Pro-FantasyRPG/assets/frame/BorderFrame_Square02_Bottom.png"
+  },
+  "2430d6f8-ef94-493b-b24b-8ff5ef995ba4": {
+    "asset": 1747896289369,
+    "meta": 1747896289417,
+    "relativePath": "GUI Pro-FantasyRPG/assets/button/Button_Rectangle_01_Convex_Yellow.Png"
+  },
+  "90030a39-926e-4547-9087-962f3d205625": {
+    "asset": 1747897132725,
+    "meta": 1747897168833,
+    "relativePath": "Animation/animationShowInforHero01.anim"
+  },
+  "8232105d-626e-43f3-840f-dcdcdbe4e6e5": {
+    "asset": 1747897276247,
+    "meta": 1747897276299,
+    "relativePath": "Animation/animationShowInforHeroPanel.anim"
+  },
+  "0fa9b3f4-622b-4be1-b17f-e9cd5ee439a5": {
+    "asset": 1747897533426,
+    "meta": 1747897533475,
+    "relativePath": "Animation/animationLiveInInforHero.anim"
+  },
+  "66cde4c2-003b-4e07-8691-1f0747b6e0e9": {
+    "asset": 1747897866487,
+    "meta": 1747897866532,
+    "relativePath": "Animation/animationShowIndexHero.anim"
+  },
+  "f11d140e-93a5-4027-bbdb-31a0bc234d94": {
+    "asset": 1747898372872,
+    "meta": 1747898384092,
+    "relativePath": "Script/powerManager.js"
+  },
+  "c084bb0d-3498-4a65-9610-4bac1fbf5b81": {
+    "asset": 1747899447584,
+    "meta": 1747899450677,
     "relativePath": "Script/rotateNode.js"
   },
-  "27a02ee8-1ff5-4eb1-871f-6aee537f4e0b": {
-    "asset": 1747823400308,
-    "meta": 1747823400356,
-    "relativePath": "Animation/animationAddPlayer01.anim"
+  "ddb92255-9e3c-4405-b424-3274690b4a73": {
+    "asset": 1747899708027,
+    "meta": 1747899708066,
+    "relativePath": "GUI Pro-FantasyRPG/assets/icons/function_icon_plus.png"
+  },
+  "1b6c2e96-428f-457e-a05e-42f0cab2dffa": {
+    "asset": 1747899759238,
+    "meta": 1747899759992,
+    "relativePath": "GUI Pro-FantasyRPG/assets/icons/function_icon_custume_top.png"
+  },
+  "3fcc126a-9cd4-47c6-962f-589b9fc4f4d8": {
+    "asset": 1747901138746,
+    "meta": 1747901138793,
+    "relativePath": "GUI Pro-FantasyRPG/assets/image/figure/function_icon_custume_top.png"
+  },
+  "cf21ca6a-0ce8-472f-8271-b7644d831fe6": {
+    "asset": 1747901162294,
+    "meta": 1747901163149,
+    "relativePath": "GUI Pro-FantasyRPG/assets/image/figure/Character_Sample_02.png"
+  },
+  "e62ff632-3906-4a71-8fd5-6dff987bb7bf": {
+    "asset": 1747901329203,
+    "meta": 1747901339273,
+    "relativePath": "Script/heroSkinChanger.js"
+  },
+  "fd495f89-1d6c-482f-a2fc-6a52a4c94205": {
+    "asset": 1747901872653,
+    "meta": 1747901872701,
+    "relativePath": "GUI Pro-FantasyRPG/assets/icons/function_icon_reload.png"
+  },
+  "2d76b5bb-2236-438c-ad19-8ff3a6d64d3b": {
+    "asset": 1747904202694,
+    "meta": 1747904202731,
+    "relativePath": "Scene/Room.fire"
+  },
+  "fe5a00aa-7202-43c7-84b5-0d7868b38035": {
+    "asset": 1747902265078,
+    "meta": 1747902267941,
+    "relativePath": "Script/showInforHeroButton.js"
+  },
+  "53baa445-26c0-485f-8ba9-328a77d9c306": {
+    "asset": 1747903340635,
+    "meta": 1747903340687,
+    "relativePath": "GUI Pro-FantasyRPG/assets/icons/Icon_Arrow_Back.png"
+  },
+  "637533d4-da1d-47b4-bdce-0966c293ee2f": {
+    "asset": 1747903729927,
+    "meta": 1747903729944,
+    "relativePath": "GUI Pro-FantasyRPG/assets/line/Slider_Level_Slider_Fill_Bg.png"
+  },
+  "72bf21a0-1aa4-488a-9381-8f8f4e4a917f": {
+    "asset": 1747904033289,
+    "meta": 1747904033319,
+    "relativePath": "GUI Pro-FantasyRPG/assets/frame/BorderFrame_Circle.png"
+  },
+  "2078f928-5518-400a-91e5-6b752113d53c": {
+    "asset": 1747904173623,
+    "meta": 1747904173674,
+    "relativePath": "GUI Pro-FantasyRPG/assets/icons/IconSet_Role_Sorcerer.png"
   }
 }

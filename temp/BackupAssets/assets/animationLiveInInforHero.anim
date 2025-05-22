@@ -1,0 +1,33 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "animationLiveInInforHero",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 1.5,
+  "sample": 60,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "props": {
+      "position": [
+        {
+          "frame": 0.8333333333333334,
+          "value": [
+            457.769,
+            -436.918,
+            0
+          ]
+        },
+        {
+          "frame": 1.5,
+          "value": [
+            457.769,
+            -61.498,
+            0
+          ]
+        }
+      ]
+    }
+  },
+  "events": []
+}

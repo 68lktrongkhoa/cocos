@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "Slider_Level_Slider_Fill_Bg",
+    "texture": "637533d4-da1d-47b4-bdce-0966c293ee2f",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      4,
+      28
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      4,
+      28
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

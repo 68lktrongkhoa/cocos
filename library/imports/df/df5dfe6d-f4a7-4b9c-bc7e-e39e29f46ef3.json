@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "IconSet_Role_Priest",
+    "texture": "57311ed0-c00a-40eb-af88-5036889f22fb",
+    "atlas": "",
+    "rect": [
+      0,
+      0,
+      71,
+      84
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      71,
+      84
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}
