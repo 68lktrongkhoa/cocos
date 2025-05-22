@@ -159,7 +159,7 @@
       "__type__": "cc.Vec3",
       "x": 0,
       "y": 0,
-      "z": 610.5479096680293
+      "z": 524.8113946933698
     },
     "_scale": {
       "__type__": "cc.Vec3",
@@ -1722,10 +1722,10 @@
     },
     "_enabled": true,
     "audioPGM": {
-      "__uuid__": "a1640c47-0d2e-41ba-a64a-0d576929c839"
+      "__uuid__": "18cdc045-4e1f-420f-a4e1-42739c102c90"
     },
     "audioClick": {
-      "__uuid__": "7f37a58e-e293-4355-85d8-aa731c4a1d49"
+      "__uuid__": "838baf51-5bc2-4d15-8e6d-6ad58c2c5a28"
     },
     "_id": "8a6Ly9AF1KPJyFVC1yJPgc"
   },
@@ -5943,7 +5943,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "heroShinChangerController",
+    "_name": "heroSkinChangerController",
     "_objFlags": 0,
     "_parent": {
       "__id__": 32
@@ -6012,10 +6012,10 @@
     },
     "skins": [
       {
-        "__uuid__": "ad200b8b-83e9-4972-a7b4-fdb184f05263"
+        "__uuid__": "60c5ef5d-2e81-4ab0-a7e8-8710ae03c965"
       },
       {
-        "__uuid__": "796e73b5-6d84-4a97-a4e2-5f25f42abedc"
+        "__uuid__": "c273a792-ea03-4657-a100-883be074e367"
       }
     ],
     "currentIndex": 0,
@@ -6037,7 +6037,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "796e73b5-6d84-4a97-a4e2-5f25f42abedc"
+      "__uuid__": "60c5ef5d-2e81-4ab0-a7e8-8710ae03c965"
     },
     "_type": 0,
     "_sizeMode": 0,
