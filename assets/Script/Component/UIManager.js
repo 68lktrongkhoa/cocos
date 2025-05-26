@@ -1,20 +1,15 @@
-const PopupCommonController = require('PopupCommonController');
+const PopupController = require('PopupController');
 cc.Class({
     extends: cc.Component,
 
     properties: {
         settingsPopupController: {
             default: null,
-            type: PopupCommonController 
-        },
-
-        inventoryPopupController: {
-            default: null,
-            type: PopupCommonController
+            type: PopupController 
         },
         rankingPopupController: {
             default: null,
-            type: PopupCommonController,
+            type: PopupController,
         },
 
     },
