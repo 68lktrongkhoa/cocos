@@ -53,7 +53,6 @@ cc.Class({
         if (this.popupNode && this.popupNode.active) {
             const doHide = () => {
                 this.popupNode.active = false;
-                cc.log(this.popupNode.name + " đã được đóng.");
             };
 
             if (this.closeAnimation && this.closeAnimationClipName) {
