@@ -39,7 +39,16 @@ cc.Class({
             { rank: 3, name: "hêhhe", score: 87443, countryCode: "de" },
             { rank: 4, name: "LiulIU", score: 79176, countryCode: "fr" },
             { rank: 5, name: "HuyDepTrai123", score: 74751, countryCode: "cn" },
-            { rank: 6, name: "DuyHandSome", score: 72290, countryCode: "tr" },
+            { rank: 6, name: "Vortex", score: 72290, countryCode: "tr" },
+            { rank: 7, name: "MysticFlow", score: 72290, countryCode: "kr" },
+            { rank: 8, name: "DuyHandSome", score: 72290, countryCode: "tr" },
+            { rank: 9, name: "Khaaaaaa", score: 72290, countryCode: "tr" },
+            { rank: 10, name: "hihihhi", score: 72290, countryCode: "kr" },
+            { rank: 11, name: "RogueShadow", score: 72290, countryCode: "tr" },
+            { rank: 12, name: "123lala", score: 72290, countryCode: "us" },
+            { rank: 13, name: "RogueShadow23456", score: 72290, countryCode: "kr" },
+            { rank: 14, name: "lalaaaaa", score: 72290, countryCode: "tr" },
+            { rank: 15, name: "RogueShadow1234", score: 72290, countryCode: "kr" },
         ];
     },
 
