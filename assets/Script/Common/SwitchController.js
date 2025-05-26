@@ -58,7 +58,7 @@ cc.Class({
 
         if (animate && this.animationDuration > 0) {
             cc.tween(this.knob)
-                .to(this.animationDuration, { position: cc.v2(targetX, targetY) }, { easing: 'sineOut' }) // Hoặc cc.v3
+                .to(this.animationDuration, { position: cc.v2(targetX, targetY) }, { easing: 'sineOut' })
                 .start();
         } else {
             this.knob.setPosition(targetX, targetY);

@@ -61,14 +61,11 @@ cc.Class({
 
     populateRankingList: function () {
         if (!this.rankItemPrefab) {
-            console.error("populateRankingList: RankItem Prefab is NOT assigned!");
             return;
         }
         if (!this.contentNode) {
-            console.error("populateRankingList: Content Node is NOT assigned!");
             return;
         }
-        console.log("populateRankingList: RankItem Prefab:", this.rankItemPrefab.name, "Content Node:", this.contentNode.name);
 
         this.contentNode.removeAllChildren();
 
@@ -81,7 +78,6 @@ cc.Class({
             const itemNode = cc.instantiate(this.rankItemPrefab);
 
             if (!itemNode) {
-                console.error("populateRankingList: Failed to instantiate RankItem Prefab for:", playerData.name);
                 continue;
             }
 

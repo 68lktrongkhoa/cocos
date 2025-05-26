@@ -18,11 +18,9 @@ cc.Class({
 
     onLoad () {
         if (!this.musicAudioSource) {
-            cc.warn("Chưa gán Music AudioSource cho VolumeController!");
             return;
         }
         if (!this.volumeSlider) {
-            cc.warn("Chưa gán Volume Slider cho VolumeController!");
             return;
         }
 

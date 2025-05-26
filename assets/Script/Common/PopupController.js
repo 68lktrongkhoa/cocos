@@ -11,26 +11,6 @@ cc.Class({
             default: [],
             type: [cc.Button],
         },
-
-        openAnimation: {
-            default: null,
-            type: cc.Animation,
-        },
-        openAnimationClipName: {
-            default: "",
-            type: cc.String,
-        },
-
-        closeAnimation: {
-            default: null,
-            type: cc.Animation,
-            tooltip: "(Tùy chọn) Component Animation để chạy khi đóng popup."
-        },
-        closeAnimationClipName: {
-            default: "",
-            type: cc.String,
-            tooltip: "Tên của animation clip để chạy khi đóng (nếu có Close Animation)."
-        },
     },
 
     onLoad () {
@@ -56,7 +36,6 @@ cc.Class({
     showPopup(data) {
         if (this.popupNode) {
             if (this.popupNode.active) {
-                cc.log(this.popupNode.name + " đã được hiển thị rồi.");
                 return;
             }
 
@@ -65,14 +44,8 @@ cc.Class({
             if (this.openAnimation && this.openAnimationClipName) {
                 this.openAnimation.play(this.openAnimationClipName);
             }
-            let specificController = this.getComponent('SpecificPopupLogic');
-            if (specificController && typeof specificController.setup === 'function') {
-                specificController.setup(data);
-            }
-
-            cc.log(this.popupNode.name + " được hiển thị.");
         } else {
-            cc.error("popupNode chưa được gán cho PopupCommonController trên node: " + this.node.name);
+            cc.error("popupNode chưa được gán cho PopupController trên node: " + this.node.name);
         }
     },
 
