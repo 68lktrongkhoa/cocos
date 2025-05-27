@@ -1,3 +1,5 @@
+const mEmitter = require('mEmitter');
+const UIManager = require('UIManager');
 cc.Class({
     extends: cc.Component,
 
@@ -10,6 +12,10 @@ cc.Class({
         closeButtons: {
             default: [],
             type: [cc.Button],
+        },
+        popupId: {
+            default: "",
+            type: cc.String
         },
     },
 
@@ -30,6 +36,23 @@ cc.Class({
                     cc.warn("Một trong các closeButtons không hợp lệ hoặc thiếu node.");
                 }
             });
+        }
+        
+        if (typeof this.handleOpenPopupEvent !== 'function') {
+            
+             return;
+        }
+        this._boundHandleOpenPopupEvent = this.handleOpenPopupEvent.bind(this);
+        
+        if (mEmitter.instance) {
+            mEmitter.instance.registerEvent(UIManager.EVENT_NAME.OPEN_POPUP, this._boundHandleOpenPopupEvent);
+            cc.log(`PopupController (${this.popupId}): Registered for event '${UIManager.EVENT_NAME.OPEN_POPUP}'`);
+        } else {
+            cc.error(`mEmitter.instance not available for PopupController (${this.popupId}). Cannot register event.`);
+        }
+
+        if (!this.popupId) {
+            cc.warn(`popupId chưa được đặt cho PopupController trên node: ${this.node.name}. Popup này sẽ không thể mở qua sự kiện.`);
         }
     },
 
