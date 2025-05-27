@@ -1,6 +1,6 @@
 {
   "ver": "2.3.3",
-  "uuid": "a106ca90-73be-472d-a8f4-9b3c525720eb",
+  "uuid": "aeb237e2-75c4-4d37-8d7d-e0d22fd509e8",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -9,10 +9,10 @@
   "packable": true,
   "platformSettings": {},
   "subMetas": {
-    "icon_language_flag_eng": {
+    "Slider_LevelProfile_SliderBottom_Fill_SingleDemo": {
       "ver": "1.0.4",
-      "uuid": "907eef65-2cac-4fc6-a1c8-38747d90837b",
-      "rawTextureUuid": "a106ca90-73be-472d-a8f4-9b3c525720eb",
+      "uuid": "f4686dfc-6b70-44ed-94f7-86053031c332",
+      "rawTextureUuid": "aeb237e2-75c4-4d37-8d7d-e0d22fd509e8",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
@@ -20,10 +20,10 @@
       "offsetY": 0,
       "trimX": 0,
       "trimY": 0,
-      "width": 151,
-      "height": 127,
-      "rawWidth": 151,
-      "rawHeight": 127,
+      "width": 321,
+      "height": 27,
+      "rawWidth": 321,
+      "rawHeight": 27,
       "borderTop": 0,
       "borderBottom": 0,
       "borderLeft": 0,
