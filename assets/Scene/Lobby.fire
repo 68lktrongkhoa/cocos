@@ -174,7 +174,7 @@
       "__type__": "cc.Vec3",
       "x": 0,
       "y": 0,
-      "z": 623.5382907247958
+      "z": 610.5479096680293
     },
     "_scale": {
       "__type__": "cc.Vec3",
@@ -15938,7 +15938,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50,
+      "width": 52.03,
       "height": 20.9
     },
     "_anchorPoint": {
@@ -16217,7 +16217,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 27,
+      "width": 26.67,
       "height": 12.6
     },
     "_anchorPoint": {
@@ -16459,7 +16459,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 56.89,
+      "width": 59.26,
       "height": 20.9
     },
     "_anchorPoint": {
@@ -16809,7 +16809,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 25,
+      "width": 24.45,
       "height": 12.6
     },
     "_anchorPoint": {
@@ -17051,7 +17051,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50,
+      "width": 52.03,
       "height": 20.9
     },
     "_anchorPoint": {
@@ -17830,7 +17830,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 72,
+      "width": 74.19,
       "height": 18.9
     },
     "_anchorPoint": {
@@ -18328,7 +18328,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 54,
+      "width": 55.03,
       "height": 18.9
     },
     "_anchorPoint": {
@@ -18682,7 +18682,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 50,
+      "width": 50.84,
       "height": 18.9
     },
     "_anchorPoint": {
@@ -19014,7 +19014,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 51,
+      "width": 51.69,
       "height": 18.9
     },
     "_anchorPoint": {
@@ -19362,7 +19362,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 79,
+      "width": 80.04,
       "height": 18.9
     },
     "_anchorPoint": {
@@ -19604,7 +19604,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 41,
+      "width": 42.52,
       "height": 18.9
     },
     "_anchorPoint": {
@@ -19936,7 +19936,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 74,
+      "width": 75.85,
       "height": 18.9
     },
     "_anchorPoint": {
