@@ -1,5 +1,4 @@
 const Emitter = require('mEmitter');
-const PLAY_CLICK_SOUND_EVENT = "play_click_sound_event";
 const VOLUME_CHANGED_EVENT = "volume_changed_event";
 
 cc.Class({
@@ -29,21 +28,4 @@ cc.Class({
         this._currentVolumeForSound = newVolume;
         cc.log(`ButtonClickSoundEmitter (${this.node.name}): Volume updated to ${this._currentVolumeForSound}`);
     },
-
-    emitPlayClickSoundEvent() {
-        if (!Emitter.instance) {
-            cc.error("ButtonClickSoundEmitter: mEmitter.instance is not initialized when emitting click sound!");
-            return;
-        }
-
-        const eventData = {
-            sourceNodeName: this.node.name,
-            timestamp: Date.now(),
-            message: "Please play the standard click sound via mEmitter.",
-            soundVolume: this._currentVolumeForSound
-        };
-
-        cc.log(`ButtonClickSoundEmitter (${this.node.name}): Emitting '${PLAY_CLICK_SOUND_EVENT}' with volume: ${eventData.soundVolume}`);
-        Emitter.instance.emit(PLAY_CLICK_SOUND_EVENT, eventData);
-    }
 });
