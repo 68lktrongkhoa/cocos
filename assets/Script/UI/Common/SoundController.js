@@ -56,7 +56,6 @@ cc.Class({
 
     
     playBGM(){
-        console.log("Play BGM");
         if (this.audioPGM) {
             this.bgmAudioId = cc.audioEngine.play(this.audioPGM, true, 1);
         } else {
@@ -71,11 +70,11 @@ cc.Class({
             return;
         }
 
-        console.log("SoundController: Play Onclick due to mEmitter event.");
+        cc.log("SoundController: Play Onclick due to mEmitter event.");
         let volumeToPlay = 1;
 
         if (receivedData) {
-            console.log("SoundController: Received data:", receivedData);
+            cc.log("SoundController: Received data:", receivedData);
             if (typeof receivedData.soundVolume === 'number') {
                 volumeToPlay = receivedData.soundVolume;
             }
