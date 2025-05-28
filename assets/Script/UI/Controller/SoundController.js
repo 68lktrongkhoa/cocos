@@ -31,24 +31,6 @@ cc.Class({
         Emitter.instance.registerEvent(SOUND_CLICK_TOGGLE_EVENT, this._boundToggleClickSound);
     },
 
-    onDestroy() {
-        if (Emitter.instance) {
-            if (this._boundPlayOnClickSound) {
-                Emitter.instance.removeEvent(PLAY_CLICK_SOUND_EVENT, this._boundPlayOnClickSound);
-            }
-            if (this._boundToggleClickSound) {
-                Emitter.instance.removeEvent(SOUND_CLICK_TOGGLE_EVENT, this._boundToggleClickSound);
-            }
-        }
-
-        if (this.bgmAudioId !== undefined && cc.audioEngine.getState(this.bgmAudioId) === cc.audioEngine.AudioState.PLAYING) {
-            cc.audioEngine.stop(this.bgmAudioId);
-        }
-        if (this.clickAudioId !== undefined && cc.audioEngine.getState(this.clickAudioId) === cc.audioEngine.AudioState.PLAYING) {
-            cc.audioEngine.stop(this.clickAudioId);
-        }
-    },
-
     toggleClickSound(isEnabled) {
         this._isClickSoundEnabled = isEnabled;
         cc.log(`SoundController: Click sound is now ${this._isClickSoundEnabled ? 'ENABLED' : 'DISABLED'}.`);
@@ -85,6 +67,24 @@ cc.Class({
             cc.log(`SoundController: Playing click sound with volume: ${volumeToPlay}`);
         } else {
             cc.warn("audioClick is not assigned in soundController.");
+        }
+    },
+
+    onDestroy() {
+        if (Emitter.instance) {
+            if (this._boundPlayOnClickSound) {
+                Emitter.instance.removeEvent(PLAY_CLICK_SOUND_EVENT, this._boundPlayOnClickSound);
+            }
+            if (this._boundToggleClickSound) {
+                Emitter.instance.removeEvent(SOUND_CLICK_TOGGLE_EVENT, this._boundToggleClickSound);
+            }
+        }
+
+        if (this.bgmAudioId !== undefined && cc.audioEngine.getState(this.bgmAudioId) === cc.audioEngine.AudioState.PLAYING) {
+            cc.audioEngine.stop(this.bgmAudioId);
+        }
+        if (this.clickAudioId !== undefined && cc.audioEngine.getState(this.clickAudioId) === cc.audioEngine.AudioState.PLAYING) {
+            cc.audioEngine.stop(this.clickAudioId);
         }
     },
 });

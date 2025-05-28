@@ -6,17 +6,14 @@ cc.Class({
             default: null,
             type: cc.ProgressBar
         },
-        skillIconSprite: {
-            default: null,
-            type: cc.Sprite
-        },
         cooldownLabel: {
             default: null,
             type: cc.Label
         },
         cooldownDuration: {
             default: 5.0,
-            type: cc.Float
+            type: cc.Float,
+            min: 0.1
         },
         buttonComponent: {
             default: null,
@@ -31,15 +28,31 @@ cc.Class({
         this._currentTime = 0;
         this._isCoolingDown = false;
         this.resetCooldown();
+
+        if (this.buttonComponent) {
+            this.buttonComponent.node.on('click', this.onSkillButtonClicked, this);
+        } else {
+            cc.warn("CooldownManager: Thuộc tính 'buttonComponent' chưa được gán. Kỹ năng không thể kích hoạt bằng click.");
+        }
     },
 
-    start () { 
-        this.startCooldown(); 
+    start () {
+        this.startCooldown();
+    },
+
+    onSkillButtonClicked() {
+        this.startCooldown();
     },
 
     startCooldown() {
+        if (this.cooldownDuration <= 0) {
+            cc.warn("CooldownManager: 'cooldownDuration' phải lớn hơn 0.");
+            this.resetCooldown();
+            return;
+        }
+
         if (this._isCoolingDown) {
-            cc.warn("Skill is already cooling down!");
+            cc.warn("CooldownManager: Kỹ năng đã đang trong quá trình hồi chiêu!");
             return;
         }
 
@@ -47,7 +60,7 @@ cc.Class({
         this._currentTime = this.cooldownDuration;
 
         if (this.cooldownProgressBar) {
-            this.cooldownProgressBar.node.active = true; 
+            this.cooldownProgressBar.node.active = true;
             this.cooldownProgressBar.progress = 1;
         }
         if (this.cooldownLabel) {
@@ -65,6 +78,7 @@ cc.Class({
 
         if (this.cooldownProgressBar) {
             this.cooldownProgressBar.progress = 0;
+            
         }
         if (this.cooldownLabel) {
             this.cooldownLabel.string = "";
@@ -93,4 +107,10 @@ cc.Class({
             }
         }
     },
+
+    onDestroy() {
+        if (this.buttonComponent) {
+            this.buttonComponent.node.off('click', this.onSkillButtonClicked, this);
+        }
+    }
 });
