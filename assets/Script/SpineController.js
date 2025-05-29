@@ -2,141 +2,69 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        spineCharacter: {
+        spine: {
             default: null,
             type: sp.Skeleton
         },
-        buttonContainer: {
+        scrollView: {
             default: null,
-            type: cc.Node
+            type: cc.ScrollView 
         },
-        textButtonPrefab: {
+        animationButton: {
             default: null,
-            type: cc.Prefab
-        },
-        labelNodeNameInPrefab: {
-            default: "Label", 
-            type: cc.String
-        },
-        labelFontSize: {
-            default: 20,
-            type: cc.Integer
+            type: cc.Prefab,
         },
     },
 
-    start () {
-        if (!this.spineCharacter) {
-            cc.error("Spine Character chưa được gán!");
-            return;
-        }
-        if (!this.buttonContainer) {
-            cc.error("Button Container chưa được gán!");
-            return;
-        }
-        if (!this.textButtonPrefab) {
-            cc.error("Text Button Prefab chưa được gán!");
-            return;
-        }
-        if (!this.labelNodeNameInPrefab) {
-            cc.warn("Label Node Name In Prefab chưa được chỉ định. Sẽ không thể set text cho button.");
-        }
-
-        if (this.spineCharacter.skeletonData) {
-            this.createAllAnimationTextButtons();
-        } else {
-            cc.log("SpineData chưa sẵn sàng, đang chờ một chút...");
-            this.scheduleOnce(() => {
-                if (this.spineCharacter.skeletonData) {
-                    this.createAllAnimationTextButtons();
-                } else {
-                    cc.error("SpineData vẫn chưa sẵn sàng sau khi chờ. Không thể tạo buttons.");
-                }
-            }, 0.1);
-        }
-    },
-
-    createAllAnimationTextButtons () {
-        this.buttonContainer.removeAllChildren();
-
-        let layout = this.buttonContainer.getComponent(cc.Layout);
-        if (!layout) {
-            layout = this.buttonContainer.addComponent(cc.Layout);
-        }
-        
-        layout.type = cc.Layout.Type.HORIZONTAL; 
-        layout.spacingY = 10;
-        layout.spacingX = 30; 
-        layout.resizeMode = cc.Layout.ResizeMode.CONTAINER;
-
-        if (!this.spineCharacter.skeletonData) {
-            cc.warn("Không thể tạo buttons vì SpineData không có sẵn.");
+    onLoad() {
+        if (!this.spine || !this.spine.skeletonData) {
+            console.error("Spine or skeleton data missing");
             return;
         }
 
-        const allSpineAnimations = this.spineCharacter.skeletonData._skeletonCache.animations; 
-        let animationNamesToCreate = allSpineAnimations.map(anim => anim.name);
+        if (!this.scrollView || !this.scrollView.content) {
+            console.error("ScrollView or content node Editor.");
+            return;
+        }
 
-        animationNamesToCreate.unshift("<None>");
+        const contentNode = this.scrollView.content; 
 
-        animationNamesToCreate.forEach(animName => {
-            const buttonNodeInstance = cc.instantiate(this.textButtonPrefab);
-            buttonNodeInstance.name = animName + "Button";
+        contentNode.removeAllChildren(true);
 
-            if (this.labelNodeNameInPrefab) {
-                const labelNode = buttonNodeInstance.getChildByName(this.labelNodeNameInPrefab);
-                if (labelNode) {
-                    const labelComponent = labelNode.getComponent(cc.Label);
-                    if (labelComponent) {
-                        labelComponent.string = (animName === "<None>") ? "None" : animName;
-                        if (this.labelFontSize > 0) { 
-                            labelComponent.fontSize = this.labelFontSize;
-                        }
-                    } else {
-                        cc.warn(`Node '${this.labelNodeNameInPrefab}' trong Prefab không có cc.Label component cho button '${animName}'.`);
-                    }
-                } else {
-                    cc.warn(`Không tìm thấy Node con Label tên là '${this.labelNodeNameInPrefab}' trong Prefab cho button '${animName}'.`);
-                }
+        const animations = this.spine.skeletonData.skeletonJson.animations;
+        for (let animName in animations) {
+            const animBtn = cc.instantiate(this.animationButton);
+            const label = animBtn.getComponentInChildren(cc.Label);
+            if (label) {
+                label.string = animName;
             } else {
-                cc.warn("Chưa chỉ định 'Label Node Name In Prefab', không thể set text cho button.");
+                console.warn("Prefab 'animationButton' have not child Label component .");
             }
 
-            const buttonComponent = buttonNodeInstance.getComponent(cc.Button);
-            if (!buttonComponent) {
-                cc.error(`Prefab button cho '${animName}' phải có sẵn Component cc.Button!`);
-                buttonNodeInstance.destroy();
-                return;
-            }
-            buttonComponent.clickEvents = [];
-
-            const clickEventHandler = new cc.Component.EventHandler();
-            clickEventHandler.target = this.node;
-            clickEventHandler.component = "SpineController";
-            clickEventHandler.handler = "onAnimationButtonClick";
-            clickEventHandler.customEventData = animName;
-
-            buttonComponent.clickEvents.push(clickEventHandler);
-            this.buttonContainer.addChild(buttonNodeInstance);
-        });
-    },
-
-    onAnimationButtonClick (event, customEventData) {
-        const animationName = customEventData;
-        this.playAnimation(animationName);
-    },
-
-    playAnimation (animationName) {
-        if (this.spineCharacter) {
-            if (animationName === "<None>") {
-                this.spineCharacter.clearTrack(0);
+            const buttonComponent = animBtn.getComponent(cc.Button);
+            if (buttonComponent) {
+                const clickEvent = this.createClickEvent(animName);
+                buttonComponent.clickEvents.push(clickEvent);
             } else {
-                let loop = false;
-                const loopedAnimations = ["idle", "run", "walk", "hoverboard"];
-                if (loopedAnimations.includes(animationName)) {
-                    loop = true;
-                }
-                this.spineCharacter.setAnimation(0, animationName, loop);
+                console.warn("Prefab 'animationButton' have not Button component.");
             }
+            
+            animBtn.parent = contentNode;
         }
     },
+
+    createClickEvent(animName) {
+        const event = new cc.Component.EventHandler();
+        event.target = this.node;
+        event.component = "SpineController"; 
+        event.handler = "playAnimation";
+        event.customEventData = animName;
+        return event;
+    },
+
+    playAnimation(event, animName) {
+        if (this.spine) {
+            this.spine.setAnimation(0, animName, false);
+        }
+    }
 });
