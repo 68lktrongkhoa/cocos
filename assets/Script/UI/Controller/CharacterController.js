@@ -1,4 +1,3 @@
-// CharacterController.js
 cc.Class({
     extends: cc.Component,
 
@@ -84,22 +83,62 @@ cc.Class({
             type: cc.Float
         },
         bombCooldown: {
-            default: 15.0, // 15 giây
+            default: 15.0,
             type: cc.Float
-        }
+        },
+
+        invincibilityDuration: {
+            default: 2.0,
+            type: cc.Float
+        },
+        blinkInterval: {
+            default: 0.1,
+            type: cc.Float
+        },
+        blinkOpacity: {
+            default: 100,
+            type: cc.Integer
+        },
+         maxLives: {
+            default: 5,
+            type: cc.Integer,
+            tooltip: "Số mạng tối đa của nhân vật"
+        },
+        heartIconPrefab: {
+            default: null,
+            type: cc.Prefab,
+            tooltip: "Prefab của icon trái tim hiển thị mạng"
+        },
+        heartsContainerNode: {
+            default: null,
+            type: cc.Node,
+            tooltip: "Node Layout chứa các icon trái tim"
+        },
+
+        
     },
 
     onLoad() {
         if (!this.spineAnim) {
             this.enabled = false;
+            cc.error("CharacterController: SpineAnim chưa được gán!");
             return;
         }
+
+        let manager = cc.director.getCollisionManager();
+        if (!manager.enabled) {
+            manager.enabled = true;
+        }
+        this.currentLives = this.maxLives;
+        this._heartNodes = []; // Mảng để lưu trữ các node trái tim
+        this.initHeartsUI();
 
         this.moveDirection = 0;
         this.isMovingUp = false;
         this.isMovingDown = false;
         this.isShooting = false;
-
+        this.isInvincible = false;
+        this.originalOpacity = this.node.opacity; 
         this.canDropBombByKey = false;
         this.scheduleOnce(() => {
             this.canDropBombByKey = true;
@@ -112,7 +151,7 @@ cc.Class({
         if (this.bombDropButtonNode) {
             this.bombDropButtonComponent = this.bombDropButtonNode.getComponent(cc.Button);
             if (!this.bombDropButtonComponent) {
-            } else {
+                cc.warn("CharacterController: bombDropButtonNode không có component cc.Button.");
             }
         } else {
             cc.warn("CharacterController: Thuộc tính 'bombDropButtonNode' CHƯA được gán trong Inspector (dùng cho phím Enter).");
@@ -138,7 +177,7 @@ cc.Class({
             this.actionButtonComponent = this.actionButtonNode.getComponent(cc.Button);
             if (!this.actionButtonComponent) {
                 cc.warn("CharacterController: Thuộc tính 'actionButtonNode' được gán nhưng không có component cc.Button.");
-            } 
+            }
         } else {
             cc.warn("CharacterController: Thuộc tính 'actionButtonNode' CHƯA được gán trong Inspector (dùng cho phím Space).");
         }
@@ -149,6 +188,65 @@ cc.Class({
         if (!this.bulletSpawnPoint) {
             cc.warn("CharacterController: Thuộc tính 'bulletSpawnPoint' (điểm bắn đạn) CHƯA được gán.");
         }
+    },
+
+    initHeartsUI() {
+        if (!this.heartIconPrefab || !this.heartsContainerNode) {
+            cc.warn("CharacterController: Chưa gán HeartIconPrefab hoặc HeartsContainerNode để hiển thị mạng.");
+            return;
+        }
+        this.heartsContainerNode.removeAllChildren(); // Xóa trái tim cũ (nếu có, ví dụ khi restart game)
+        this._heartNodes = [];
+
+        for (let i = 0; i < this.maxLives; i++) {
+            const heart = cc.instantiate(this.heartIconPrefab);
+            this.heartsContainerNode.addChild(heart);
+            this._heartNodes.push(heart);
+        }
+        cc.log(`Đã khởi tạo ${this.maxLives} trái tim UI.`);
+    },
+
+    updateHeartsUI() {
+        if (!this._heartNodes || this._heartNodes.length === 0) return;
+        cc.log(`Cập nhật UI: Còn lại ${this.currentLives} mạng.`);
+        // for (let i = 0; i < this._heartNodes.length; i++) {
+        //     if (i < this.currentLives) {
+        //         if (this._heartNodes[i]) this._heartNodes[i].active = true; // Hiện trái tim
+        //     } else {
+        //         console.log("Trừ 1 trái tim")
+        //         if (this._heartNodes[i]) this._heartNodes[i].active = false; // Ẩn trái tim
+        //     }
+        // }
+        // Hoặc cách đơn giản hơn nếu bạn chỉ ẩn dần từ phải sang trái:
+        if (this.currentLives >= 0 && this.currentLives < this._heartNodes.length) {
+            if (this._heartNodes[this.currentLives]) { 
+                this._heartNodes[this.currentLives].active = false;
+            }
+        }
+        
+    },
+
+    takeDamage(amount) {
+        
+        if (this.isInvincible && this.currentLives <= 0) {
+            this.isInvincible = !this.isInvincible
+            return;
+        }
+        this.currentLives -= amount;
+        cc.log(`Nhân vật nhận sát thương, còn ${this.currentLives} mạng.`);
+
+        this.updateHeartsUI();
+
+        if (this.currentLives <= 0) {
+            this.currentLives = 0; 
+            this.handleGameOver();
+        } else {
+            this.startBlinkingEffect();
+        }
+    },
+
+     handleGameOver() {
+        cc.log("GAME OVER!");
     },
 
     onDestroy() {
@@ -213,19 +311,15 @@ cc.Class({
             case cc.macro.KEY.space:
                 if (!this.isShooting) {
                     this.performShootAndOrAction(event);
-                } 
+                }
                 break;
             case cc.macro.KEY.enter:
-               
                 if (this.canDropBombByKey) {
                     if (this.bombDropButtonNode && this.bombDropButtonComponent && this.bombDropButtonComponent.interactable) {
                         this.simulateBombDropButtonClick(event);
-
                         this.canDropBombByKey = false;
-                        
                         this.scheduleOnce(() => {
                             this.canDropBombByKey = true;
-                           
                         }, this.bombCooldown);
                     }
                 } else {
@@ -235,20 +329,139 @@ cc.Class({
         }
     },
 
+    onKeyUp(event) {
+        switch (event.keyCode) {
+            case cc.macro.KEY.w:
+            case cc.macro.KEY.up:
+                this.isMovingUp = false;
+                this.updateMovementState();
+                break;
+            case cc.macro.KEY.s:
+            case cc.macro.KEY.down:
+                this.isMovingDown = false;
+                this.updateMovementState();
+                break;
+        }
+    },
+
+    startMoveUp() {
+        this.isMovingUp = true;
+        this.updateMovementState();
+    },
+    stopMoveUp() {
+        this.isMovingUp = false;
+        this.updateMovementState();
+    },
+    startMoveDown() {
+        this.isMovingDown = true;
+        this.updateMovementState();
+    },
+    stopMoveDown() {
+        this.isMovingDown = false;
+        this.updateMovementState();
+    },
+
+    updateMovementState() {
+        if (this.isShooting || this.isInvincible) { // Không đổi animation khi đang bắn hoặc đang chớp chớp
+            return;
+        }
+        if (this.isMovingUp && !this.isMovingDown) {
+            this.moveDirection = 1;
+            this.playAnimation(this.moveUpAnimName, true);
+        } else if (this.isMovingDown && !this.isMovingUp) {
+            this.moveDirection = -1;
+            this.playAnimation(this.moveDownAnimName, true);
+        } else {
+            this.moveDirection = 0;
+            this.playAnimation(this.idleAnimName, true);
+        }
+    },
+
+    performShootAndOrAction(originalEvent = null) {
+        if (this.isInvincible) return;
+
+        if (this.shootAnimName) {
+            this.isShooting = true;
+            this.playAnimation(this.shootAnimName, false);
+
+            this.spineAnim.setCompleteListener((trackEntry) => {
+                if (trackEntry.animation.name === this.shootAnimName) {
+                    this.isShooting = false;
+                    this.updateMovementState(); // Cập nhật lại animation sau khi bắn xong
+                    this.spineAnim.setCompleteListener(null);
+                }
+            });
+        } else {
+            cc.warn("CharacterController: Tên animation 'shoot' chưa được cấu hình.");
+        }
+
+        if (this.bulletPrefab && this.bulletSpawnPoint) {
+            const bullet = cc.instantiate(this.bulletPrefab);
+            const spawnPosWorld = this.bulletSpawnPoint.convertToWorldSpaceAR(cc.v2(0, 0));
+            const parentOfBullet = this.node.parent || cc.director.getScene(); // Đảm bảo có node cha
+            const spawnPosLocal = parentOfBullet.convertToNodeSpaceAR(spawnPosWorld);
+
+            bullet.setPosition(spawnPosLocal);
+            parentOfBullet.addChild(bullet);
+
+            const bulletComp = bullet.getComponent('BulletController');
+            if (bulletComp) {
+                bulletComp.shootTowards(cc.v2(1, 0), this.bulletSpeed);
+            } else {
+                cc.warn("CharacterController: Prefab đạn không có script BulletController.");
+            }
+        } else {
+            cc.warn("CharacterController: Không thể bắn đạn do bulletPrefab hoặc bulletSpawnPoint chưa được gán.");
+        }
+
+        // Mô phỏng click nút action (nếu có)
+        if (this.actionButtonComponent && this.actionButtonComponent.interactable) {
+            const originalScale = this.actionButtonNode.scale;
+            const originalColor = this.actionButtonNode.color;
+
+            if (this.actionButtonComponent.transition === cc.Button.Transition.SCALE && this.actionButtonComponent.zoomScale !== 1) {
+                this.actionButtonNode.scale = originalScale * this.actionButtonComponent.zoomScale;
+            } else if (this.actionButtonComponent.transition === cc.Button.Transition.COLOR) {
+                this.actionButtonNode.color = this.actionButtonComponent.pressedColor;
+            }
+
+            this.scheduleOnce(() => {
+                if (this.actionButtonComponent.transition === cc.Button.Transition.SCALE && this.actionButtonComponent.zoomScale !== 1) {
+                    cc.tween(this.actionButtonNode)
+                        .to(this.actionButtonComponent.duration, { scale: originalScale })
+                        .start();
+                } else if (this.actionButtonComponent.transition === cc.Button.Transition.COLOR) {
+                     cc.tween(this.actionButtonNode)
+                        .to(this.actionButtonComponent.duration, { color: originalColor })
+                        .start();
+                }
+                if (this.actionButtonComponent.clickEvents && this.actionButtonComponent.clickEvents.length > 0) {
+                    cc.Component.EventHandler.emitEvents(this.actionButtonComponent.clickEvents, originalEvent);
+                } else {
+                     cc.log("CharacterController: Action Button không có Click Events nào được cấu hình.");
+                }
+            }, this.simulatedPressDuration);
+        } else {
+             // cc.log("CharacterController: Không mô phỏng click Action Button (chưa gán hoặc không tương tác).");
+        }
+    },
+
     triggerBombDropFromUI() {
+        if (this.isInvincible) return; 
+
         if (!this.bombPrefab) {
             cc.warn("CharacterController: Không thể thả bom, 'bombPrefab' chưa được gán.");
             return;
         }
 
         const bomb = cc.instantiate(this.bombPrefab);
-        const parentForBomb = this.bombsContainerNode ? this.bombsContainerNode : this.node.parent;
+        const parentForBomb = this.bombsContainerNode ? this.bombsContainerNode : (this.node.parent || cc.director.getScene());
         if (!parentForBomb) {
             cc.error("CharacterController: Không tìm thấy Node cha hợp lệ để thả bom.");
             return;
         }
-
-        const worldPosX = this.node.convertToWorldSpaceAR(cc.v2(0, 0)).x;
+        const offsetXPx = 1000;
+        const worldPosX = this.node.convertToWorldSpaceAR(cc.v2(offsetXPx, 0)).x;
         const localSpawnPos = parentForBomb.convertToNodeSpaceAR(cc.v2(worldPosX, 0));
         bomb.setPosition(localSpawnPos.x, this.bombSpawnHeight);
         parentForBomb.addChild(bomb);
@@ -294,117 +507,41 @@ cc.Class({
         }, this.simulatedPressDuration);
     },
 
-    onKeyUp(event) {
-        switch (event.keyCode) {
-            case cc.macro.KEY.w:
-            case cc.macro.KEY.up:
-                this.isMovingUp = false;
-                this.updateMovementState();
-                break;
-            case cc.macro.KEY.s:
-            case cc.macro.KEY.down:
-                this.isMovingDown = false;
-                this.updateMovementState();
-                break;
-        }
-    },
-
-    startMoveUp() {
-        this.isMovingUp = true;
-        this.updateMovementState();
-    },
-    stopMoveUp() {
-        this.isMovingUp = false;
-        this.updateMovementState();
-    },
-    startMoveDown() {
-        this.isMovingDown = true;
-        this.updateMovementState();
-    },
-    stopMoveDown() {
-        this.isMovingDown = false;
-        this.updateMovementState();
-    },
-
-    updateMovementState() {
-        if (this.isShooting) {
+   
+    onCollisionEnter: function (other, self) {
+        if (this.isInvincible) {
             return;
         }
-        if (this.isMovingUp && !this.isMovingDown) {
-            this.moveDirection = 1;
-            this.playAnimation(this.moveUpAnimName, true);
-        } else if (this.isMovingDown && !this.isMovingUp) {
-            this.moveDirection = -1;
-            this.playAnimation(this.moveDownAnimName, true);
-        } else {
-            this.moveDirection = 0;
-            this.playAnimation(this.idleAnimName, true);
+        if (other.node.group === 'monster') {
+            this.startBlinkingEffect();
+            if (cc.isValid(other.node)) {
+                    other.node.destroy();
+            }
+            this.takeDamage(1);
+            // if (this.healthComponent) {
+            //     this.healthComponent.takeDamage(other.getComponent('EnemyController').damage);
+            // }
         }
     },
 
-    performShootAndOrAction(originalEvent = null) {
-        if (this.shootAnimName) {
-            this.isShooting = true;
-            this.playAnimation(this.shootAnimName, false);
+    _performBlink() {
+        this.node.opacity = (this.node.opacity === this.originalOpacity) ? this.blinkOpacity : this.originalOpacity;
+    },
 
-            this.spineAnim.setCompleteListener((trackEntry) => {
-                if (trackEntry.animation.name === this.shootAnimName) {
-                    this.isShooting = false;
-                    this.updateMovementState();
-                    this.spineAnim.setCompleteListener(null);
-                }
-            });
-        } else {
-            cc.warn("CharacterController: Tên animation 'shoot' chưa được cấu hình.");
-        }
+    startBlinkingEffect() {
+        if (this.isInvincible) return;
+        this.isInvincible = true;
+        this.schedule(this._performBlink, this.blinkInterval, cc.macro.REPEAT_FOREVER, 0);
+        this._performBlink();
+        this.scheduleOnce(() => {
+            this.stopBlinkingEffect();
+        }, this.invincibilityDuration);
+    },
 
-        if (this.bulletPrefab && this.bulletSpawnPoint) {
-            const bullet = cc.instantiate(this.bulletPrefab);
-            const spawnPosWorld = this.bulletSpawnPoint.convertToWorldSpaceAR(cc.v2(0, 0));
-            const parentOfBullet = this.node.parent;
-            const spawnPosLocal = parentOfBullet.convertToNodeSpaceAR(spawnPosWorld);
-
-            bullet.setPosition(spawnPosLocal);
-            parentOfBullet.addChild(bullet);
-
-            const bulletComp = bullet.getComponent('BulletController');
-            if (bulletComp) {
-                bulletComp.shootTowards(cc.v2(1, 0), this.bulletSpeed);
-            } else {
-                cc.warn("CharacterController: Prefab đạn không có script BulletController.");
-            }
-        } else {
-            cc.warn("CharacterController: Không thể bắn đạn do bulletPrefab hoặc bulletSpawnPoint chưa được gán.");
-        }
-
-        if (this.actionButtonComponent && this.actionButtonComponent.interactable) {
-            const originalScale = this.actionButtonNode.scale;
-            const originalColor = this.actionButtonNode.color;
-
-            if (this.actionButtonComponent.transition === cc.Button.Transition.SCALE && this.actionButtonComponent.zoomScale !== 1) {
-                this.actionButtonNode.scale = originalScale * this.actionButtonComponent.zoomScale;
-            } else if (this.actionButtonComponent.transition === cc.Button.Transition.COLOR) {
-                this.actionButtonNode.color = this.actionButtonComponent.pressedColor;
-            }
-
-            this.scheduleOnce(() => {
-                if (this.actionButtonComponent.transition === cc.Button.Transition.SCALE && this.actionButtonComponent.zoomScale !== 1) {
-                    cc.tween(this.actionButtonNode)
-                        .to(this.actionButtonComponent.duration, { scale: originalScale })
-                        .start();
-                } else if (this.actionButtonComponent.transition === cc.Button.Transition.COLOR) {
-                     cc.tween(this.actionButtonNode)
-                        .to(this.actionButtonComponent.duration, { color: originalColor })
-                        .start();
-                }
-                if (this.actionButtonComponent.clickEvents && this.actionButtonComponent.clickEvents.length > 0) {
-                    cc.Component.EventHandler.emitEvents(this.actionButtonComponent.clickEvents, originalEvent);
-                } else {
-                     cc.log("CharacterController: Action Button không có Click Events nào được cấu hình.");
-                }
-            }, this.simulatedPressDuration);
-        } else {
-             cc.log("CharacterController: Không mô phỏng click Action Button (chưa gán hoặc không tương tác).");
-        }
+    stopBlinkingEffect() {
+        this.unschedule(this._performBlink);
+        this.node.opacity = this.originalOpacity;
+        this.isInvincible = false;
+        this.updateMovementState();
     }
 });

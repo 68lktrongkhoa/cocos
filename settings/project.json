@@ -9,11 +9,25 @@
     [
       false,
       false,
+      true,
       true
     ],
     [
       false,
       true,
+      false
+    ],
+    [
+      false,
+      true,
+      false,
+      false
+    ],
+    [
+      false,
+      false,
+      false,
+      false,
       false
     ]
   ],
@@ -35,7 +49,9 @@
   "group-list": [
     "default",
     "monster",
-    "bullet"
+    "bullet",
+    "player",
+    "none"
   ],
   "last-module-event-record-time": 0,
   "simulator-orientation": false,
