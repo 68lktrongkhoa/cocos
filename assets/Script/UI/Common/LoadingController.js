@@ -80,9 +80,7 @@ cc.Class({
         }
 
         if (this.progressBar.progress >= 1) {
-            console.log("this.sceneLaunched",this.sceneLaunched)
             if (!this.sceneLaunched) {
-                cc.log("Có vào đây không")
                 this.sceneLaunched = true;
                 cc.director.loadScene(this.sceneToLoad);
             }
