@@ -2,7 +2,19 @@
   "assets-sort-type": "name",
   "collision-matrix": [
     [
+      false,
+      false,
+      false
+    ],
+    [
+      false,
+      false,
       true
+    ],
+    [
+      false,
+      true,
+      false
     ]
   ],
   "design-resolution-height": 720,
@@ -21,7 +33,9 @@
   "fit-height": true,
   "fit-width": false,
   "group-list": [
-    "default"
+    "default",
+    "monster",
+    "bullet"
   ],
   "last-module-event-record-time": 0,
   "simulator-orientation": false,
