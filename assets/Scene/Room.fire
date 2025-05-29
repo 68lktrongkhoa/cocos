@@ -162,7 +162,7 @@
       "__type__": "cc.Vec3",
       "x": 0,
       "y": 0,
-      "z": 610.5479096680293
+      "z": 623.5382907247958
     },
     "_scale": {
       "__type__": "cc.Vec3",
@@ -1726,7 +1726,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Object",
+    "_name": "Character",
     "_objFlags": 0,
     "_parent": {
       "__id__": 34
