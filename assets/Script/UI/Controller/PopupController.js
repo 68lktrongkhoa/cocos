@@ -1,5 +1,5 @@
 const mEmitter = require('mEmitter');
-const UIManager = require('UIManager');
+const UIConstants = require('UIConstants');
 
 cc.Class({
     extends: cc.Component,
@@ -23,10 +23,9 @@ cc.Class({
         _boundHandleOpenPopupEvent: null,
     },
 
-    onLoad () {
+    onLoad() {
         if (!this.popupNode) {
             this.popupNode = this.node;
-            cc.log(`PopupController (${this.node.name}): popupNode not assigned, using this.node as popupNode.`);
         }
 
         if (this.popupNode) {
@@ -54,8 +53,7 @@ cc.Class({
                 }
             };
             if (mEmitter && mEmitter.instance) {
-                mEmitter.instance.registerEvent(UIManager.EVENT_NAME.OPEN_POPUP, this._boundHandleOpenPopupEvent);
-                cc.log(`PopupController (${this.popupId}): Registered for event '${UIManager.EVENT_NAME.OPEN_POPUP}'`);
+                mEmitter.instance.registerEvent(UIConstants.EVENT_NAME.OPEN_POPUP, this._boundHandleOpenPopupEvent);
             } else {
                 cc.error(`PopupController (${this.popupId}): mEmitter.instance not available. Cannot register for OPEN_POPUP event.`);
             }
@@ -82,12 +80,11 @@ cc.Class({
         } else {
             cc.log(`PopupController (${this.popupId || this.node.name}): onPopupDidShow`, data);
         }
-        mEmitter.instance.emit(UIManager.EVENT_NAME.POPUP_SHOWN, this.popupId);
+        mEmitter.instance.emit(UIConstants.EVENT_NAME.POPUP_SHOWN, this.popupId);
     },
 
     hidePopup() {
         if (!this.popupNode || !this._isShown) {
-            cc.log(`PopupController (${this.popupId || this.node.name}): Popup is already hidden or not initialized.`);
             return;
         }
         cc.log(`PopupController (${this.popupId || this.node.name}): onPopupWillHide`);
@@ -97,8 +94,7 @@ cc.Class({
                 this.popupNode.active = false;
             }
             this._isShown = false;
-            cc.log(`PopupController (${this.popupId || this.node.name}): onPopupDidHide`);
-            mEmitter.instance.emit(UIManager.EVENT_NAME.POPUP_HIDDEN, this.popupId);
+            mEmitter.instance.emit(UIConstants.EVENT_NAME.POPUP_HIDDEN, this.popupId);
         };
 
         if (this.closeAnimation && this.closeAnimationClipName && this.popupNode.active) {
@@ -118,8 +114,7 @@ cc.Class({
         });
 
         if (mEmitter && mEmitter.instance && this._boundHandleOpenPopupEvent) {
-            mEmitter.instance.removeEvent(UIManager.EVENT_NAME.OPEN_POPUP, this._boundHandleOpenPopupEvent);
-            cc.log(`PopupController (${this.popupId || this.node.name}): Unregistered from event '${UIManager.EVENT_NAME.OPEN_POPUP}'`);
+            mEmitter.instance.removeEvent(UIConstants.EVENT_NAME.OPEN_POPUP, this._boundHandleOpenPopupEvent);
         }
         this._boundHandleOpenPopupEvent = null;
     }
