@@ -101,18 +101,15 @@ cc.Class({
         },
          maxLives: {
             default: 5,
-            type: cc.Integer,
-            tooltip: "Số mạng tối đa của nhân vật"
+            type: cc.Integer
         },
         heartIconPrefab: {
             default: null,
-            type: cc.Prefab,
-            tooltip: "Prefab của icon trái tim hiển thị mạng"
+            type: cc.Prefab
         },
         heartsContainerNode: {
             default: null,
-            type: cc.Node,
-            tooltip: "Node Layout chứa các icon trái tim"
+            type: cc.Node
         },
 
         
@@ -130,7 +127,7 @@ cc.Class({
             manager.enabled = true;
         }
         this.currentLives = this.maxLives;
-        this._heartNodes = []; // Mảng để lưu trữ các node trái tim
+        this._heartNodes = [];
         this.initHeartsUI();
 
         this.moveDirection = 0;
@@ -195,7 +192,7 @@ cc.Class({
             cc.warn("CharacterController: Chưa gán HeartIconPrefab hoặc HeartsContainerNode để hiển thị mạng.");
             return;
         }
-        this.heartsContainerNode.removeAllChildren(); // Xóa trái tim cũ (nếu có, ví dụ khi restart game)
+        this.heartsContainerNode.removeAllChildren();
         this._heartNodes = [];
 
         for (let i = 0; i < this.maxLives; i++) {
@@ -208,16 +205,6 @@ cc.Class({
 
     updateHeartsUI() {
         if (!this._heartNodes || this._heartNodes.length === 0) return;
-        cc.log(`Cập nhật UI: Còn lại ${this.currentLives} mạng.`);
-        // for (let i = 0; i < this._heartNodes.length; i++) {
-        //     if (i < this.currentLives) {
-        //         if (this._heartNodes[i]) this._heartNodes[i].active = true; // Hiện trái tim
-        //     } else {
-        //         console.log("Trừ 1 trái tim")
-        //         if (this._heartNodes[i]) this._heartNodes[i].active = false; // Ẩn trái tim
-        //     }
-        // }
-        // Hoặc cách đơn giản hơn nếu bạn chỉ ẩn dần từ phải sang trái:
         if (this.currentLives >= 0 && this.currentLives < this._heartNodes.length) {
             if (this._heartNodes[this.currentLives]) { 
                 this._heartNodes[this.currentLives].active = false;
@@ -233,7 +220,6 @@ cc.Class({
             return;
         }
         this.currentLives -= amount;
-        cc.log(`Nhân vật nhận sát thương, còn ${this.currentLives} mạng.`);
 
         this.updateHeartsUI();
 
@@ -362,7 +348,7 @@ cc.Class({
     },
 
     updateMovementState() {
-        if (this.isShooting || this.isInvincible) { // Không đổi animation khi đang bắn hoặc đang chớp chớp
+        if (this.isShooting || this.isInvincible) {
             return;
         }
         if (this.isMovingUp && !this.isMovingDown) {
@@ -387,7 +373,7 @@ cc.Class({
             this.spineAnim.setCompleteListener((trackEntry) => {
                 if (trackEntry.animation.name === this.shootAnimName) {
                     this.isShooting = false;
-                    this.updateMovementState(); // Cập nhật lại animation sau khi bắn xong
+                    this.updateMovementState();
                     this.spineAnim.setCompleteListener(null);
                 }
             });
@@ -414,7 +400,6 @@ cc.Class({
             cc.warn("CharacterController: Không thể bắn đạn do bulletPrefab hoặc bulletSpawnPoint chưa được gán.");
         }
 
-        // Mô phỏng click nút action (nếu có)
         if (this.actionButtonComponent && this.actionButtonComponent.interactable) {
             const originalScale = this.actionButtonNode.scale;
             const originalColor = this.actionButtonNode.color;
@@ -441,9 +426,7 @@ cc.Class({
                      cc.log("CharacterController: Action Button không có Click Events nào được cấu hình.");
                 }
             }, this.simulatedPressDuration);
-        } else {
-             // cc.log("CharacterController: Không mô phỏng click Action Button (chưa gán hoặc không tương tác).");
-        }
+        } 
     },
 
     triggerBombDropFromUI() {
@@ -465,7 +448,6 @@ cc.Class({
         const localSpawnPos = parentForBomb.convertToNodeSpaceAR(cc.v2(worldPosX, 0));
         bomb.setPosition(localSpawnPos.x, this.bombSpawnHeight);
         parentForBomb.addChild(bomb);
-        cc.log(`CharacterController: Bom đã được thả tại (${bomb.x.toFixed(0)}, ${bomb.y.toFixed(0)})`);
 
         const bombComp = bomb.getComponent('BombController');
         if (bombComp) {
