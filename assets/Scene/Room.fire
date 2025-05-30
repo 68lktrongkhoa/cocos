@@ -74,14 +74,14 @@
         "__id__": 87
       },
       {
-        "__id__": 145
+        "__id__": 146
       }
     ],
     "_active": true,
     "_level": 1,
     "_components": [
       {
-        "__id__": 171
+        "__id__": 173
       }
     ],
     "_prefab": null,
@@ -165,7 +165,7 @@
       "__type__": "cc.Vec3",
       "x": 0,
       "y": 0,
-      "z": 435.61077810357267
+      "z": 525.6683641879051
     },
     "_scale": {
       "__type__": "cc.Vec3",
@@ -2358,7 +2358,7 @@
         "__id__": 52
       },
       {
-        "__id__": 170
+        "__id__": 145
       }
     ],
     "_prefab": null,
@@ -2552,7 +2552,7 @@
     "_playTimes": 0,
     "_isAniComplete": true,
     "_N$skeletonData": {
-      "__uuid__": "a1c5cc75-3c14-4652-b22e-1da51595d7f4"
+      "__uuid__": "234c3543-69b2-4a3a-a1bf-b5a3b5d5a114"
     },
     "_N$_defaultCacheMode": 0,
     "_N$debugSlots": false,
@@ -2574,6 +2574,7 @@
     },
     "moveSpeed": 200,
     "idleAnimName": "hoverboard",
+    "portalEnterAnimName": "portal",
     "moveUpAnimName": "move_up",
     "moveDownAnimName": "move_down",
     "shootAnimName": "shoot",
@@ -2618,9 +2619,6 @@
     },
     "heartsContainerNode": {
       "__id__": 45
-    },
-    "gameOverScreenNode": {
-      "__id__": 145
     },
     "_id": "a1lcxWiNBOK4g/xKfvVbXg"
   },
@@ -6784,6 +6782,27 @@
     "customEventData": ""
   },
   {
+    "__type__": "cc.BoxCollider",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 48
+    },
+    "_enabled": true,
+    "tag": 0,
+    "_offset": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 90
+    },
+    "_size": {
+      "__type__": "cc.Size",
+      "width": 140,
+      "height": 190
+    },
+    "_id": "a96jp+tEdHVa2/OUF7LhXZ"
+  },
+  {
     "__type__": "cc.Node",
     "_name": "Popup Game Over",
     "_objFlags": 0,
@@ -6792,23 +6811,26 @@
     },
     "_children": [
       {
-        "__id__": 146
+        "__id__": 147
       },
       {
-        "__id__": 149
+        "__id__": 150
       },
       {
-        "__id__": 151
+        "__id__": 152
+      },
+      {
+        "__id__": 154
       }
     ],
-    "_active": false,
+    "_active": true,
     "_level": 2,
     "_components": [
       {
-        "__id__": 168
+        "__id__": 171
       },
       {
-        "__id__": 169
+        "__id__": 172
       }
     ],
     "_prefab": null,
@@ -6859,17 +6881,17 @@
     "_name": "Background_BattlePass_Right",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 145
+      "__id__": 146
     },
     "_children": [],
     "_active": true,
     "_level": 3,
     "_components": [
       {
-        "__id__": 147
+        "__id__": 148
       },
       {
-        "__id__": 148
+        "__id__": 149
       }
     ],
     "_prefab": null,
@@ -6920,7 +6942,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 146
+      "__id__": 147
     },
     "_enabled": true,
     "_materials": [
@@ -6952,7 +6974,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 146
+      "__id__": 147
     },
     "_enabled": true,
     "_defaultClip": null,
@@ -6962,17 +6984,17 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Label Game Over",
+    "_name": "Title_Ribbon_01_Red",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 145
+      "__id__": 146
     },
     "_children": [],
     "_active": true,
     "_level": 3,
     "_components": [
       {
-        "__id__": 150
+        "__id__": 151
       }
     ],
     "_prefab": null,
@@ -6986,7 +7008,97 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 570.1,
+      "width": 600,
+      "height": 150
+    },
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_position": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 35,
+      "z": 0
+    },
+    "_scale": {
+      "__type__": "cc.Vec3",
+      "x": 1,
+      "y": 1,
+      "z": 1
+    },
+    "_eulerAngles": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_is3DNode": false,
+    "groupIndex": 0,
+    "_id": "3dj48SU+dB2qevWsKRu+lW"
+  },
+  {
+    "__type__": "cc.Sprite",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 150
+    },
+    "_enabled": true,
+    "_materials": [
+      {
+        "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
+      }
+    ],
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 771,
+    "_spriteFrame": {
+      "__uuid__": "dd9231d8-7a9e-49d9-94a8-18c539ec0f8c"
+    },
+    "_type": 0,
+    "_sizeMode": 0,
+    "_fillType": 0,
+    "_fillCenter": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_fillStart": 0,
+    "_fillRange": 0,
+    "_isTrimmedMode": true,
+    "_atlas": null,
+    "_id": "434mq5a89FK78pXuFz7tIC"
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "Label Game Over",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 146
+    },
+    "_children": [],
+    "_active": true,
+    "_level": 3,
+    "_components": [
+      {
+        "__id__": 153
+      }
+    ],
+    "_prefab": null,
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 253,
+      "g": 225,
+      "b": 225,
+      "a": 255
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 396.72,
       "height": 126
     },
     "_anchorPoint": {
@@ -7023,7 +7135,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 149
+      "__id__": 152
     },
     "_enabled": true,
     "_materials": [
@@ -7034,11 +7146,13 @@
     "_useOriginalSize": false,
     "_string": "GAME OVER ",
     "_N$string": "GAME OVER ",
-    "_fontSize": 90,
+    "_fontSize": 60,
     "_lineHeight": 100,
     "_enableWrapText": true,
-    "_N$file": null,
-    "_isSystemFontUsed": true,
+    "_N$file": {
+      "__uuid__": "82ccfee0-bbd1-4a70-a560-ab1dc47ad711"
+    },
+    "_isSystemFontUsed": false,
     "_spacingX": 0,
     "_batchAsBitmap": false,
     "_N$horizontalAlign": 1,
@@ -7053,14 +7167,14 @@
     "_name": "Button",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 145
+      "__id__": 146
     },
     "_children": [
       {
-        "__id__": 152
+        "__id__": 155
       },
       {
-        "__id__": 160
+        "__id__": 163
       }
     ],
     "_active": true,
@@ -7088,7 +7202,7 @@
     "_position": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": 0,
+      "y": -44.984,
       "z": 0
     },
     "_scale": {
@@ -7114,18 +7228,18 @@
     "_name": "Button Play Again ",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 151
+      "__id__": 154
     },
     "_children": [
       {
-        "__id__": 153
+        "__id__": 156
       }
     ],
     "_active": true,
     "_level": 4,
     "_components": [
       {
-        "__id__": 158
+        "__id__": 161
       }
     ],
     "_prefab": null,
@@ -7176,21 +7290,21 @@
     "_name": "Background",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 152
+      "__id__": 155
     },
     "_children": [
       {
-        "__id__": 154
+        "__id__": 157
       }
     ],
     "_active": true,
     "_level": 2,
     "_components": [
       {
-        "__id__": 156
+        "__id__": 159
       },
       {
-        "__id__": 157
+        "__id__": 160
       }
     ],
     "_prefab": null,
@@ -7241,14 +7355,14 @@
     "_name": "function_icon_reload",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 153
+      "__id__": 156
     },
     "_children": [],
     "_active": true,
     "_level": 3,
     "_components": [
       {
-        "__id__": 155
+        "__id__": 158
       }
     ],
     "_prefab": null,
@@ -7299,7 +7413,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 154
+      "__id__": 157
     },
     "_enabled": true,
     "_materials": [
@@ -7331,7 +7445,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 153
+      "__id__": 156
     },
     "_enabled": true,
     "_materials": [
@@ -7363,7 +7477,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 153
+      "__id__": 156
     },
     "_enabled": true,
     "alignMode": 0,
@@ -7390,14 +7504,14 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 152
+      "__id__": 155
     },
     "_enabled": true,
     "duration": 0.1,
     "zoomScale": 1.2,
     "clickEvents": [
       {
-        "__id__": 159
+        "__id__": 162
       }
     ],
     "_N$interactable": true,
@@ -7465,14 +7579,14 @@
       "__uuid__": "29158224-f8dd-4661-a796-1ffab537140e"
     },
     "_N$target": {
-      "__id__": 153
+      "__id__": 156
     },
     "_id": "6dGuqZp6BDKo6SFyX1cNpn"
   },
   {
     "__type__": "cc.ClickEvent",
     "target": {
-      "__id__": 145
+      "__id__": 146
     },
     "component": "",
     "_componentId": "76928IOMClBmKFwGnhlwBQa",
@@ -7484,18 +7598,18 @@
     "_name": "Button Back Lobby Screen",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 151
+      "__id__": 154
     },
     "_children": [
       {
-        "__id__": 161
+        "__id__": 164
       }
     ],
     "_active": true,
     "_level": 4,
     "_components": [
       {
-        "__id__": 166
+        "__id__": 169
       }
     ],
     "_prefab": null,
@@ -7546,21 +7660,21 @@
     "_name": "Background",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 160
+      "__id__": 163
     },
     "_children": [
       {
-        "__id__": 162
+        "__id__": 165
       }
     ],
     "_active": true,
     "_level": 2,
     "_components": [
       {
-        "__id__": 164
+        "__id__": 167
       },
       {
-        "__id__": 165
+        "__id__": 168
       }
     ],
     "_prefab": null,
@@ -7611,14 +7725,14 @@
     "_name": "function_icon_home_1",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 161
+      "__id__": 164
     },
     "_children": [],
     "_active": true,
     "_level": 3,
     "_components": [
       {
-        "__id__": 163
+        "__id__": 166
       }
     ],
     "_prefab": null,
@@ -7669,7 +7783,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 162
+      "__id__": 165
     },
     "_enabled": true,
     "_materials": [
@@ -7701,7 +7815,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 161
+      "__id__": 164
     },
     "_enabled": true,
     "_materials": [
@@ -7733,7 +7847,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 161
+      "__id__": 164
     },
     "_enabled": true,
     "alignMode": 0,
@@ -7760,14 +7874,14 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 160
+      "__id__": 163
     },
     "_enabled": true,
     "duration": 0.1,
     "zoomScale": 1.2,
     "clickEvents": [
       {
-        "__id__": 167
+        "__id__": 170
       }
     ],
     "_N$interactable": true,
@@ -7835,14 +7949,14 @@
       "__uuid__": "29158224-f8dd-4661-a796-1ffab537140e"
     },
     "_N$target": {
-      "__id__": 161
+      "__id__": 164
     },
     "_id": "eaQG4BvSVGMa9KQZElROXX"
   },
   {
     "__type__": "cc.ClickEvent",
     "target": {
-      "__id__": 145
+      "__id__": 146
     },
     "component": "",
     "_componentId": "76928IOMClBmKFwGnhlwBQa",
@@ -7854,14 +7968,14 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 145
+      "__id__": 146
     },
     "_enabled": true,
     "retryButton": {
-      "__id__": 158
+      "__id__": 161
     },
     "lobbyButton": {
-      "__id__": 166
+      "__id__": 169
     },
     "lobbySceneName": "Lobby",
     "_isLoadingScene": false,
@@ -7873,38 +7987,17 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 145
+      "__id__": 146
     },
     "_enabled": true,
     "popupNode": {
-      "__id__": 145
+      "__id__": 146
     },
     "closeButtons": [],
     "popupId": "GameOverPopup",
     "_isShown": false,
     "_boundHandleOpenPopupEvent": null,
     "_id": "dfuE22BVdIh5wWFzmcyPik"
-  },
-  {
-    "__type__": "cc.BoxCollider",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 48
-    },
-    "_enabled": true,
-    "tag": 0,
-    "_offset": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 90
-    },
-    "_size": {
-      "__type__": "cc.Size",
-      "width": 140,
-      "height": 190
-    },
-    "_id": "a96jp+tEdHVa2/OUF7LhXZ"
   },
   {
     "__type__": "cc.Canvas",
