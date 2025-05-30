@@ -30,5 +30,8 @@ class mEmitter {
         mEmitter.instance = null;
     }
 }
-mEmitter.instance = null;
-module.exports = mEmitter;
+// mEmitter.instance = null;
+const mEmitterSingleton = {
+    instance: new mEmitter()
+};
+module.exports = mEmitterSingleton;

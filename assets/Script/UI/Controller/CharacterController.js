@@ -1,3 +1,5 @@
+const mEmitter = require('mEmitter');
+const UIConstants = require('UIConstants');
 cc.Class({
     extends: cc.Component,
 
@@ -13,6 +15,9 @@ cc.Class({
         idleAnimName: {
             default: "hoverboard"
         },
+        portalEnterAnimName: {
+            default: "portal"
+        },
         moveUpAnimName: {
             default: "move_up",
         },
@@ -21,6 +26,10 @@ cc.Class({
         },
         shootAnimName: {
             default: "shoot"
+        },
+        deathAnimName: { 
+            default: "death", 
+            type: cc.String
         },
         minY: {
             default: -250,
@@ -57,8 +66,8 @@ cc.Class({
             default: 800,
             type: cc.Float
         },
-         // ---  BOM ---
-         bombPrefab: {
+        // ---  BOM ---
+        bombPrefab: {
             default: null,
             type: cc.Prefab
         },
@@ -99,7 +108,7 @@ cc.Class({
             default: 100,
             type: cc.Integer
         },
-         maxLives: {
+        maxLives: {
             default: 5,
             type: cc.Integer
         },
@@ -112,7 +121,6 @@ cc.Class({
             type: cc.Node
         },
 
-        
     },
 
     onLoad() {
@@ -135,12 +143,14 @@ cc.Class({
         this.isMovingDown = false;
         this.isShooting = false;
         this.isInvincible = false;
-        this.originalOpacity = this.node.opacity; 
+        this.isDead = false;
+        this.originalOpacity = this.node.opacity;
         this.canDropBombByKey = false;
         this.scheduleOnce(() => {
             this.canDropBombByKey = true;
         }, this.bombCooldown);
-        this.playAnimation(this.idleAnimName, true);
+
+        this.playEnterSequence();
 
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
@@ -187,6 +197,17 @@ cc.Class({
         }
     },
 
+    playEnterSequence() {
+        if (!this.spineAnim) return;
+        this.playAnimation(this.portalEnterAnimName, false, 0, true);
+        this.spineAnim.setCompleteListener((trackEntry) => {
+            if (trackEntry.trackIndex === 0 && trackEntry.animation.name === this.portalEnterAnimName) {
+                this.spineAnim.setCompleteListener(null);
+                this.playAnimation(this.idleAnimName, true, 0, false);
+            }
+        });
+    },
+
     initHeartsUI() {
         if (!this.heartIconPrefab || !this.heartsContainerNode) {
             cc.warn("CharacterController: Chưa gán HeartIconPrefab hoặc HeartsContainerNode để hiển thị mạng.");
@@ -198,6 +219,7 @@ cc.Class({
         for (let i = 0; i < this.maxLives; i++) {
             const heart = cc.instantiate(this.heartIconPrefab);
             this.heartsContainerNode.addChild(heart);
+            heart.active = true;
             this._heartNodes.push(heart);
         }
         cc.log(`Đã khởi tạo ${this.maxLives} trái tim UI.`);
@@ -205,34 +227,67 @@ cc.Class({
 
     updateHeartsUI() {
         if (!this._heartNodes || this._heartNodes.length === 0) return;
-        if (this.currentLives >= 0 && this.currentLives < this._heartNodes.length) {
-            if (this._heartNodes[this.currentLives]) { 
-                this._heartNodes[this.currentLives].active = false;
+        for (let i = 0; i < this.maxLives; i++) {
+            if (this._heartNodes[i]) {
+                this._heartNodes[i].active = i < this.currentLives;
             }
         }
-        
     },
 
     takeDamage(amount) {
-        
-        if (this.isInvincible && this.currentLives <= 0) {
-            this.isInvincible = !this.isInvincible
+        if (this.isDead || this.isInvincible) {
             return;
         }
         this.currentLives -= amount;
+        this.currentLives = Math.max(0, this.currentLives); 
 
         this.updateHeartsUI();
 
         if (this.currentLives <= 0) {
-            this.currentLives = 0; 
             this.handleGameOver();
         } else {
             this.startBlinkingEffect();
         }
     },
 
-     handleGameOver() {
+    handleGameOver() {
+        if (this.isDead) return;
+
         cc.log("GAME OVER!");
+        this.isDead = true;
+
+        this.moveDirection = 0;
+        this.isMovingUp = false;
+        this.isMovingDown = false;
+        this.isShooting = false;
+
+        if (this.isInvincible) {
+            this.stopBlinkingEffect();
+        }
+
+        if (this.spineAnim && this.deathAnimName) {
+            this.playAnimation(this.deathAnimName, false, 0, true);
+
+            this.spineAnim.setCompleteListener((trackEntry) => {
+                if (trackEntry.animation.name === this.deathAnimName) {
+                    this.spineAnim.setCompleteListener(null);
+
+                    if (mEmitter && mEmitter.instance && UIConstants && UIConstants.EVENT_NAME && UIConstants.POPUP_ID) {
+                        mEmitter.instance.emit(UIConstants.EVENT_NAME.OPEN_POPUP, { popupId: UIConstants.POPUP_ID.GAME_OVER });
+                    } else {
+                        cc.error("CharacterController: mEmitter hoặc UIConstants chưa được cấu hình đúng để mở popup game over.");
+                    }
+                }
+            });
+        } else {
+            cc.warn("CharacterController: SpineAnim or deathAnimName not set. Cannot play death animation.");
+            if (mEmitter && mEmitter.instance && UIConstants && UIConstants.EVENT_NAME && UIConstants.POPUP_ID) {
+                cc.log(`Phát sự kiện ${UIConstants.EVENT_NAME.OPEN_POPUP} cho ${UIConstants.POPUP_ID.GAME_OVER} (không có animation chết)`);
+                mEmitter.instance.emit(UIConstants.EVENT_NAME.OPEN_POPUP, { popupId: UIConstants.POPUP_ID.GAME_OVER });
+            } else {
+                cc.error("CharacterController: mEmitter hoặc UIConstants chưa được cấu hình đúng để mở popup game over.");
+            }
+        }
     },
 
     onDestroy() {
@@ -256,6 +311,8 @@ cc.Class({
     },
 
     update(dt) {
+        if (this.isDead) return;
+
         if (this.moveDirection !== 0) {
             let newY = this.node.y + this.moveDirection * this.moveSpeed * dt;
             if (typeof this.minY === 'number' && typeof this.maxY === 'number') {
@@ -264,21 +321,26 @@ cc.Class({
             this.node.y = newY;
         }
     },
-
-    playAnimation(animName, loop = false, trackIndex = 0) {
+    playAnimation(animName, loop = false, trackIndex = 0, forceOverride = false) {
         if (!this.spineAnim || !animName) {
             return;
         }
-        if (this.isShooting && animName !== this.shootAnimName && trackIndex === 0) {
-            return;
-        }
-        const currentTrackEntry = this.spineAnim.getCurrent(trackIndex);
-        if (currentTrackEntry) {
-            const currentAnimName = currentTrackEntry.animation ? currentTrackEntry.animation.name : null;
-            if (currentAnimName === animName && currentTrackEntry.loop) {
+
+        if (!forceOverride) {
+            if (this.isShooting && animName !== this.shootAnimName && trackIndex === 0) {
                 return;
             }
+            const currentTrackEntry = this.spineAnim.getCurrent(trackIndex);
+            if (currentTrackEntry) {
+                const currentAnimName = currentTrackEntry.animation ? currentTrackEntry.animation.name : null;
+                if (currentAnimName === animName && currentTrackEntry.loop === loop) {
+                    return;
+                }
+            }
+        } else {
+            this.spineAnim.clearTrack(trackIndex);
         }
+
         this.spineAnim.setAnimation(trackIndex, animName, loop);
     },
 
@@ -335,20 +397,22 @@ cc.Class({
         this.updateMovementState();
     },
     stopMoveUp() {
+        if (!this.isMovingUp) return;
         this.isMovingUp = false;
-        this.updateMovementState();
+        if (!this.isDead) this.updateMovementState();
     },
     startMoveDown() {
         this.isMovingDown = true;
         this.updateMovementState();
     },
     stopMoveDown() {
+        if (!this.isMovingDown) return;
         this.isMovingDown = false;
-        this.updateMovementState();
+        if (!this.isDead) this.updateMovementState();
     },
 
     updateMovementState() {
-        if (this.isShooting || this.isInvincible) {
+        if (this.isDead || this.isShooting || this.isInvincible) {
             return;
         }
         if (this.isMovingUp && !this.isMovingDown) {
@@ -364,7 +428,7 @@ cc.Class({
     },
 
     performShootAndOrAction(originalEvent = null) {
-        if (this.isInvincible) return;
+        if (this.isDead || this.isInvincible) return;
 
         if (this.shootAnimName) {
             this.isShooting = true;
@@ -373,7 +437,9 @@ cc.Class({
             this.spineAnim.setCompleteListener((trackEntry) => {
                 if (trackEntry.animation.name === this.shootAnimName) {
                     this.isShooting = false;
-                    this.updateMovementState();
+                    if (!this.isDead) {
+                        this.updateMovementState();
+                    }
                     this.spineAnim.setCompleteListener(null);
                 }
             });
@@ -384,7 +450,7 @@ cc.Class({
         if (this.bulletPrefab && this.bulletSpawnPoint) {
             const bullet = cc.instantiate(this.bulletPrefab);
             const spawnPosWorld = this.bulletSpawnPoint.convertToWorldSpaceAR(cc.v2(0, 0));
-            const parentOfBullet = this.node.parent || cc.director.getScene(); // Đảm bảo có node cha
+            const parentOfBullet = this.node.parent || cc.director.getScene();
             const spawnPosLocal = parentOfBullet.convertToNodeSpaceAR(spawnPosWorld);
 
             bullet.setPosition(spawnPosLocal);
@@ -411,26 +477,28 @@ cc.Class({
             }
 
             this.scheduleOnce(() => {
+                if (!cc.isValid(this.actionButtonNode)) return;
+
                 if (this.actionButtonComponent.transition === cc.Button.Transition.SCALE && this.actionButtonComponent.zoomScale !== 1) {
                     cc.tween(this.actionButtonNode)
                         .to(this.actionButtonComponent.duration, { scale: originalScale })
                         .start();
                 } else if (this.actionButtonComponent.transition === cc.Button.Transition.COLOR) {
-                     cc.tween(this.actionButtonNode)
+                    cc.tween(this.actionButtonNode)
                         .to(this.actionButtonComponent.duration, { color: originalColor })
                         .start();
                 }
                 if (this.actionButtonComponent.clickEvents && this.actionButtonComponent.clickEvents.length > 0) {
                     cc.Component.EventHandler.emitEvents(this.actionButtonComponent.clickEvents, originalEvent);
                 } else {
-                     cc.log("CharacterController: Action Button không có Click Events nào được cấu hình.");
+                    cc.log("CharacterController: Action Button không có Click Events nào được cấu hình.");
                 }
             }, this.simulatedPressDuration);
-        } 
+        }
     },
 
     triggerBombDropFromUI() {
-        if (this.isInvincible) return; 
+        if (this.isDead || this.isInvincible) return;
 
         if (!this.bombPrefab) {
             cc.warn("CharacterController: Không thể thả bom, 'bombPrefab' chưa được gán.");
@@ -458,10 +526,10 @@ cc.Class({
     },
 
     simulateBombDropButtonClick(originalEvent = null) {
+        if (this.isDead) return;
         if (!this.bombDropButtonComponent || !this.bombDropButtonComponent.interactable) {
             return;
         }
-
         const originalScale = this.bombDropButtonNode.scale;
         const originalColor = this.bombDropButtonNode.color;
         if (this.bombDropButtonComponent.transition === cc.Button.Transition.SCALE && this.bombDropButtonComponent.zoomScale !== 1) {
@@ -471,12 +539,14 @@ cc.Class({
         }
 
         this.scheduleOnce(() => {
+            if (!cc.isValid(this.bombDropButtonNode)) return;
+
             if (this.bombDropButtonComponent.transition === cc.Button.Transition.SCALE && this.bombDropButtonComponent.zoomScale !== 1) {
                 cc.tween(this.bombDropButtonNode)
                     .to(this.bombDropButtonComponent.duration, { scale: originalScale })
                     .start();
             } else if (this.bombDropButtonComponent.transition === cc.Button.Transition.COLOR) {
-                 cc.tween(this.bombDropButtonNode)
+                cc.tween(this.bombDropButtonNode)
                     .to(this.bombDropButtonComponent.duration, { color: originalColor })
                     .start();
             }
@@ -489,20 +559,16 @@ cc.Class({
         }, this.simulatedPressDuration);
     },
 
-   
+
     onCollisionEnter: function (other, self) {
-        if (this.isInvincible) {
+        if (this.isDead || this.isInvincible) {
             return;
         }
         if (other.node.group === 'monster') {
-            this.startBlinkingEffect();
             if (cc.isValid(other.node)) {
-                    other.node.destroy();
+                other.node.destroy();
             }
             this.takeDamage(1);
-            // if (this.healthComponent) {
-            //     this.healthComponent.takeDamage(other.getComponent('EnemyController').damage);
-            // }
         }
     },
 
@@ -511,10 +577,10 @@ cc.Class({
     },
 
     startBlinkingEffect() {
-        if (this.isInvincible) return;
+        if (this.isDead || this.isInvincible) return;
         this.isInvincible = true;
+        this.node.opacity = this.originalOpacity;
         this.schedule(this._performBlink, this.blinkInterval, cc.macro.REPEAT_FOREVER, 0);
-        this._performBlink();
         this.scheduleOnce(() => {
             this.stopBlinkingEffect();
         }, this.invincibilityDuration);
@@ -524,6 +590,8 @@ cc.Class({
         this.unschedule(this._performBlink);
         this.node.opacity = this.originalOpacity;
         this.isInvincible = false;
-        this.updateMovementState();
+        if (!this.isDead) {
+            this.updateMovementState();
+        }
     }
 });
