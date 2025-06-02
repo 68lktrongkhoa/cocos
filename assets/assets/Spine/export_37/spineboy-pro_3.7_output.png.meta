@@ -1,6 +1,6 @@
 {
   "ver": "2.3.3",
-  "uuid": "16efa8f5-95f8-4369-9ac2-1557f3f8b938",
+  "uuid": "115f424d-514c-4d2a-8628-cbe4ecad8d36",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -11,8 +11,8 @@
   "subMetas": {
     "spineboy-pro_3.7_output": {
       "ver": "1.0.4",
-      "uuid": "4ad4d6d5-6bb0-4c10-92d1-bea1ec0994ff",
-      "rawTextureUuid": "16efa8f5-95f8-4369-9ac2-1557f3f8b938",
+      "uuid": "eb4e8fd6-81a2-4022-9da7-054c21dfc66f",
+      "rawTextureUuid": "115f424d-514c-4d2a-8628-cbe4ecad8d36",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,

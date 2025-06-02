@@ -165,7 +165,7 @@
       "__type__": "cc.Vec3",
       "x": 0,
       "y": 0,
-      "z": 525.6683641879051
+      "z": 610.5373916844696
     },
     "_scale": {
       "__type__": "cc.Vec3",
@@ -2552,7 +2552,7 @@
     "_playTimes": 0,
     "_isAniComplete": true,
     "_N$skeletonData": {
-      "__uuid__": "234c3543-69b2-4a3a-a1bf-b5a3b5d5a114"
+      "__uuid__": "2ef5e83e-f04d-4762-92da-e1d0af177782"
     },
     "_N$_defaultCacheMode": 0,
     "_N$debugSlots": false,
