@@ -9,7 +9,12 @@ cc.Class({
         damage: {
             default: 1,
             type: cc.Integer
-        }
+        },
+        explosionEffectPrefab: {
+            default: null,
+            type: cc.Prefab
+        },
+        _spawnOriginWorld: cc.Vec2,
     },
 
     onLoad() {
@@ -29,9 +34,14 @@ cc.Class({
         }
     },
 
-    shootTowards(direction, speed) {
+    shootTowards(direction, speed,spawnOriginWorld) {
         this.direction = direction.normalize();
         this.speed = speed;
+        if (spawnOriginWorld) {
+            this._spawnOriginWorld = spawnOriginWorld;
+        } else {
+            this._spawnOriginWorld = this.node.parent.convertToWorldSpaceAR(this.node.position);
+        }
     },
 
     update(dt) {
@@ -42,12 +52,13 @@ cc.Class({
     },
 
     onCollisionEnter: function (other, self) {
+        const bulletImpactPointWorld = self.node.convertToWorldSpaceAR(cc.v2(0, 0));
         if (other.node.group === 'monster') {
-
+            this.createExplosionEffect(bulletImpactPointWorld);
             const enemyController = other.node.getComponent('EnemyController');
 
             if (enemyController) {
-                enemyController.takeDamage(this.damage);
+                enemyController.takeDamage(this.damage, bulletImpactPointWorld);
             } else {
                 cc.warn(`Monster ${other.node.name} does not have an EnemyController script! Destroying it directly.`);
                 if (cc.isValid(other.node)) {
@@ -58,5 +69,15 @@ cc.Class({
                 self.node.destroy();
             }
         }
+    },
+    createExplosionEffect(worldPosition) {
+
+        const effect = cc.instantiate(this.explosionEffectPrefab);
+        const parentNode = cc.director.getScene(); 
+        const localPosition = parentNode.convertToNodeSpaceAR(worldPosition);
+
+        effect.setPosition(localPosition);
+        parentNode.addChild(effect);
+
     },
 });

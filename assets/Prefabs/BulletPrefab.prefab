@@ -210,6 +210,14 @@
     "_enabled": true,
     "lifeTime": 3,
     "damage": 1,
+    "explosionEffectPrefab": {
+      "__uuid__": "fa5c8f94-4642-4e55-9a59-d2069c008a5b"
+    },
+    "_spawnOriginWorld": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
     "_id": ""
   },
   {
