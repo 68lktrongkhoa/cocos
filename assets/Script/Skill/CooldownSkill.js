@@ -27,28 +27,21 @@ cc.Class({
     onLoad () {
         this._currentTime = 0;
         this._isCoolingDown = false;
-        // Gọi resetCooldown ở cuối onLoad sau khi các thuộc tính khác có thể đã được thiết lập
-        // Hoặc đảm bảo các node con (progress bar, label) đã sẵn sàng nếu resetCooldown ẩn chúng.
-        // Hiện tại, resetCooldown chỉ thay đổi progress và string, nên có thể ổn ở đây.
-
-        if (this.buttonComponent && cc.isValid(this.buttonComponent.node)) { // Thêm kiểm tra cc.isValid(this.buttonComponent.node)
+       
+        if (this.buttonComponent && cc.isValid(this.buttonComponent.node)) { 
             this.buttonComponent.node.on('click', this.onSkillButtonClicked, this);
         } else {
-            // Log chi tiết hơn nếu buttonComponent được gán nhưng node của nó không hợp lệ
             if (this.buttonComponent && !cc.isValid(this.buttonComponent.node)) {
                 cc.warn(`CooldownSkill (${this.node.name}): 'buttonComponent' được gán nhưng node của nó không hợp lệ. Kỹ năng không thể kích hoạt bằng click.`);
             } else {
                 cc.warn(`CooldownSkill (${this.node.name}): Thuộc tính 'buttonComponent' chưa được gán. Kỹ năng không thể kích hoạt bằng click.`);
             }
         }
-        this.resetCooldown(); // Có thể an toàn hơn khi gọi sau khi đăng ký sự kiện
+        this.resetCooldown();
     },
 
     start () {
-        // `start` được gọi sau `onLoad` và thường chỉ một lần khi component được kích hoạt lần đầu.
-        // Nếu bạn muốn cooldown bắt đầu ngay khi component active, thì để đây là đúng.
-        // Nếu bạn muốn nó bắt đầu khi scene load, có thể không cần hàm này và chỉ dựa vào onSkillButtonClicked.
-        // this.startCooldown(); // Bỏ comment nếu muốn tự động bắt đầu cooldown khi component start.
+        
     },
 
     onSkillButtonClicked() {
@@ -56,7 +49,7 @@ cc.Class({
     },
 
     startCooldown() {
-        if (!cc.isValid(this.node)) { // Kiểm tra xem component này còn hợp lệ không
+        if (!cc.isValid(this.node)) {
             cc.warn("CooldownSkill: Component hoặc Node đã bị hủy, không thể bắt đầu cooldown.");
             return;
         }
@@ -68,8 +61,7 @@ cc.Class({
         }
 
         if (this._isCoolingDown) {
-            // Có thể không cần warn ở đây nếu người dùng click liên tục là bình thường
-            // cc.warn(`CooldownSkill (${this.node.name}): Kỹ năng đã đang trong quá trình hồi chiêu!`);
+            
             return;
         }
 
@@ -90,7 +82,7 @@ cc.Class({
     },
 
     resetCooldown() {
-        if (!cc.isValid(this.node)) { // Kiểm tra xem component này còn hợp lệ không
+        if (!cc.isValid(this.node)) { 
             return;
         }
 
@@ -99,11 +91,9 @@ cc.Class({
 
         if (this.cooldownProgressBar && cc.isValid(this.cooldownProgressBar.node)) {
             this.cooldownProgressBar.progress = 0;
-            // Tùy bạn quyết định có ẩn progress bar khi reset không
-            // this.cooldownProgressBar.node.active = false;
         }
         if (this.cooldownLabel && cc.isValid(this.cooldownLabel.node)) {
-            this.cooldownLabel.string = ""; // Hoặc "0" hoặc text mặc định nào đó
+            this.cooldownLabel.string = "";
             this.cooldownLabel.node.active = false;
         }
         if (this.buttonComponent && cc.isValid(this.buttonComponent.node)) {
@@ -131,11 +121,8 @@ cc.Class({
     },
 
     onDestroy() {
-        // Sử dụng cc.isValid để đảm bảo cả component và node của nó đều hợp lệ
         if (this.buttonComponent && cc.isValid(this.buttonComponent, true) && cc.isValid(this.buttonComponent.node, true)) {
             this.buttonComponent.node.off('click', this.onSkillButtonClicked, this);
         }
-        // Bạn cũng có thể muốn dừng các hành động hoặc scheduler nếu có
-        // this.unscheduleAllCallbacks(); // Nếu bạn có dùng schedule
     }
 });
