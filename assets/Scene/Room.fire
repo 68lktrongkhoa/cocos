@@ -2552,7 +2552,7 @@
     "_playTimes": 0,
     "_isAniComplete": true,
     "_N$skeletonData": {
-      "__uuid__": "2ef5e83e-f04d-4762-92da-e1d0af177782"
+      "__uuid__": "74145663-d3d4-4098-a98d-c8e98724c732"
     },
     "_N$_defaultCacheMode": 0,
     "_N$debugSlots": false,
@@ -6823,7 +6823,7 @@
         "__id__": 154
       }
     ],
-    "_active": true,
+    "_active": false,
     "_level": 2,
     "_components": [
       {
