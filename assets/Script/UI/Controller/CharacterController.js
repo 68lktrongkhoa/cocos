@@ -458,7 +458,7 @@ cc.Class({
 
             const bulletComp = bullet.getComponent('BulletController');
             if (bulletComp) {
-                bulletComp.shootTowards(cc.v2(1, 0), this.bulletSpeed);
+                bulletComp.shootTowards(cc.v2(1, 0), this.bulletSpeed,spawnPosWorld);
             } else {
                 cc.warn("CharacterController: Prefab đạn không có script BulletController.");
             }
