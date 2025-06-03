@@ -71,17 +71,17 @@
         "__id__": 39
       },
       {
-        "__id__": 88
+        "__id__": 89
       },
       {
-        "__id__": 147
+        "__id__": 146
       }
     ],
     "_active": true,
     "_level": 1,
     "_components": [
       {
-        "__id__": 174
+        "__id__": 173
       }
     ],
     "_prefab": null,
@@ -165,7 +165,7 @@
       "__type__": "cc.Vec3",
       "x": 0,
       "y": 0,
-      "z": 524.8113946933698
+      "z": 525.6774200971543
     },
     "_scale": {
       "__type__": "cc.Vec3",
@@ -1881,10 +1881,10 @@
         "__id__": 40
       },
       {
-        "__id__": 42
+        "__id__": 43
       },
       {
-        "__id__": 56
+        "__id__": 57
       }
     ],
     "_active": true,
@@ -1946,6 +1946,9 @@
     "_components": [
       {
         "__id__": 41
+      },
+      {
+        "__id__": 42
       }
     ],
     "_prefab": null,
@@ -2017,6 +2020,31 @@
     "_id": "fdgl6cIGpN0Z4WFmgjN1rX"
   },
   {
+    "__type__": "77f6dDYC9NKNbbbI2eMCsyt",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 40
+    },
+    "_enabled": true,
+    "monsterPrefab": {
+      "__uuid__": "fe3df7ff-9429-485e-b9d3-ff5b2d1e5e56"
+    },
+    "foxMonsterPrefab": {
+      "__uuid__": "00d3082d-799a-4bfc-8703-bdbbb66a0f0d"
+    },
+    "spawnIntervalMin": 1,
+    "spawnIntervalMax": 2,
+    "moveDurationMin": 3,
+    "moveDurationMax": 5,
+    "spawnYMin": -200,
+    "spawnYMax": 200,
+    "useTweenSystem": true,
+    "dogMonstersBeforeFoxMin": 5,
+    "dogMonstersBeforeFoxMax": 7,
+    "_id": "7fTIbunwdOi7DbK9uPuwgd"
+  },
+  {
     "__type__": "cc.Node",
     "_name": "Object",
     "_objFlags": 0,
@@ -2025,19 +2053,19 @@
     },
     "_children": [
       {
-        "__id__": 43
-      },
-      {
         "__id__": 44
       },
       {
         "__id__": 45
       },
       {
-        "__id__": 47
+        "__id__": 46
       },
       {
         "__id__": 48
+      },
+      {
+        "__id__": 49
       }
     ],
     "_active": true,
@@ -2091,7 +2119,7 @@
     "_name": "MonstersContainer",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 42
+      "__id__": 43
     },
     "_children": [],
     "_active": true,
@@ -2145,7 +2173,7 @@
     "_name": "BombsContainer",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 42
+      "__id__": 43
     },
     "_children": [],
     "_active": true,
@@ -2199,14 +2227,14 @@
     "_name": "HeartsContainer",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 42
+      "__id__": 43
     },
     "_children": [],
     "_active": true,
     "_level": 3,
     "_components": [
       {
-        "__id__": 46
+        "__id__": 47
       }
     ],
     "_prefab": null,
@@ -2257,7 +2285,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 45
+      "__id__": 46
     },
     "_enabled": true,
     "_layoutSize": {
@@ -2290,7 +2318,7 @@
     "_name": "Boss",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 42
+      "__id__": 43
     },
     "_children": [],
     "_active": true,
@@ -2344,25 +2372,23 @@
     "_name": "Character User Node",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 42
+      "__id__": 43
     },
     "_children": [
       {
-        "__id__": 49
+        "__id__": 50
       }
     ],
     "_active": true,
     "_level": 3,
     "_components": [
       {
-        "__id__": 52
-      },
-      {
         "__id__": 53
       },
       {
-        "__id__": 146
-      }
+        "__id__": 54
+      },
+      null
     ],
     "_prefab": null,
     "_opacity": 255,
@@ -2412,18 +2438,18 @@
     "_name": "spineboy-pro_3.7_output",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 48
+      "__id__": 49
     },
     "_children": [
       {
-        "__id__": 50
+        "__id__": 51
       }
     ],
     "_active": true,
     "_level": 4,
     "_components": [
       {
-        "__id__": 51
+        "__id__": 52
       }
     ],
     "_prefab": null,
@@ -2474,7 +2500,7 @@
     "_name": "bulletSpawnPoint",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 49
+      "__id__": 50
     },
     "_children": [],
     "_active": true,
@@ -2528,7 +2554,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 49
+      "__id__": 50
     },
     "_enabled": true,
     "_materials": [
@@ -2569,7 +2595,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 48
+      "__id__": 49
     },
     "_enabled": true,
     "tag": 0,
@@ -2590,11 +2616,11 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 48
+      "__id__": 49
     },
     "_enabled": true,
     "spineAnim": {
-      "__id__": 51
+      "__id__": 52
     },
     "moveSpeed": 200,
     "idleAnimName": "hoverboard",
@@ -2606,19 +2632,19 @@
     "minY": -250,
     "maxY": 250,
     "buttonUpNode": {
-      "__id__": 54
+      "__id__": 55
     },
     "buttonDownNode": {
       "__id__": 129
     },
     "actionButtonNode": {
-      "__id__": 58
+      "__id__": 59
     },
     "bulletPrefab": {
       "__uuid__": "8badb308-01c2-4845-bf47-d2c87f7a6cfa"
     },
     "bulletSpawnPoint": {
-      "__id__": 50
+      "__id__": 51
     },
     "bulletSpeed": 800,
     "bombPrefab": {
@@ -2627,10 +2653,10 @@
     "bombSpawnHeight": 400,
     "bombFallSpeed": 300,
     "bombsContainerNode": {
-      "__id__": 44
+      "__id__": 45
     },
     "bombDropButtonNode": {
-      "__id__": 112
+      "__id__": 111
     },
     "simulatedPressDuration": 0.1,
     "bombCooldown": 15,
@@ -2642,7 +2668,7 @@
       "__uuid__": "9715d2b5-203e-41c6-852f-5b4e0aacf80b"
     },
     "heartsContainerNode": {
-      "__id__": 45
+      "__id__": 46
     },
     "_id": "ff3ZjGdDpG6qvM1YU4+arI"
   },
@@ -2651,7 +2677,7 @@
     "_name": "Up",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 55
+      "__id__": 56
     },
     "_children": [
       {
@@ -2719,11 +2745,11 @@
     "_name": "Move Button",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 56
+      "__id__": 57
     },
     "_children": [
       {
-        "__id__": 54
+        "__id__": 55
       },
       {
         "__id__": 129
@@ -2784,10 +2810,10 @@
     },
     "_children": [
       {
-        "__id__": 55
+        "__id__": 56
       },
       {
-        "__id__": 57
+        "__id__": 58
       }
     ],
     "_active": true,
@@ -2841,14 +2867,14 @@
     "_name": "Skill Button",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 56
+      "__id__": 57
     },
     "_children": [
       {
-        "__id__": 58
+        "__id__": 59
       },
       {
-        "__id__": 68
+        "__id__": 69
       }
     ],
     "_active": true,
@@ -2902,27 +2928,27 @@
     "_name": "Action",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 57
+      "__id__": 58
     },
     "_children": [
       {
-        "__id__": 59
+        "__id__": 60
       },
       {
-        "__id__": 61
+        "__id__": 62
       },
       {
-        "__id__": 63
+        "__id__": 64
       },
       {
-        "__id__": 65
+        "__id__": 66
       }
     ],
     "_active": true,
     "_level": 4,
     "_components": [
       {
-        "__id__": 67
+        "__id__": 68
       }
     ],
     "_prefab": null,
@@ -2973,14 +2999,14 @@
     "_name": "Action Single",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 58
+      "__id__": 59
     },
     "_children": [],
     "_active": true,
     "_level": 5,
     "_components": [
       {
-        "__id__": 60
+        "__id__": 61
       }
     ],
     "_prefab": null,
@@ -3031,7 +3057,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 59
+      "__id__": 60
     },
     "_enabled": true,
     "_materials": [
@@ -3063,14 +3089,14 @@
     "_name": "Joystick_Action_l_White_InnerBg_DecoLine",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 58
+      "__id__": 59
     },
     "_children": [],
     "_active": true,
     "_level": 5,
     "_components": [
       {
-        "__id__": 62
+        "__id__": 63
       }
     ],
     "_prefab": null,
@@ -3121,7 +3147,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 61
+      "__id__": 62
     },
     "_enabled": true,
     "_materials": [
@@ -3153,14 +3179,14 @@
     "_name": "Joystick_Action_l_White_InnerBg_DecoLine copy",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 58
+      "__id__": 59
     },
     "_children": [],
     "_active": true,
     "_level": 5,
     "_components": [
       {
-        "__id__": 64
+        "__id__": 65
       }
     ],
     "_prefab": null,
@@ -3211,7 +3237,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 63
+      "__id__": 64
     },
     "_enabled": true,
     "_materials": [
@@ -3243,14 +3269,14 @@
     "_name": "Joystick_Action_Icon_Attack",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 58
+      "__id__": 59
     },
     "_children": [],
     "_active": true,
     "_level": 5,
     "_components": [
       {
-        "__id__": 66
+        "__id__": 67
       }
     ],
     "_prefab": null,
@@ -3301,7 +3327,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 65
+      "__id__": 66
     },
     "_enabled": true,
     "_materials": [
@@ -3333,7 +3359,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 58
+      "__id__": 59
     },
     "_enabled": true,
     "duration": 0.1,
@@ -3399,17 +3425,17 @@
     "_name": "Skill",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 57
+      "__id__": 58
     },
     "_children": [
       {
-        "__id__": 69
+        "__id__": 70
       },
       {
-        "__id__": 93
+        "__id__": 94
       },
       {
-        "__id__": 112
+        "__id__": 111
       }
     ],
     "_active": true,
@@ -3463,33 +3489,33 @@
     "_name": "Skill 01",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 68
+      "__id__": 69
     },
     "_children": [
       {
-        "__id__": 70
+        "__id__": 71
       },
       {
-        "__id__": 72
+        "__id__": 73
       },
       {
-        "__id__": 74
+        "__id__": 75
       },
       {
-        "__id__": 76
+        "__id__": 77
       },
       {
-        "__id__": 78
+        "__id__": 79
       },
       {
-        "__id__": 81
+        "__id__": 82
       }
     ],
     "_active": false,
     "_level": 5,
     "_components": [
       {
-        "__id__": 84
+        "__id__": 85
       }
     ],
     "_prefab": null,
@@ -3540,14 +3566,14 @@
     "_name": "InnerBg",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 69
+      "__id__": 70
     },
     "_children": [],
     "_active": true,
     "_level": 6,
     "_components": [
       {
-        "__id__": 71
+        "__id__": 72
       }
     ],
     "_prefab": null,
@@ -3598,7 +3624,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 70
+      "__id__": 71
     },
     "_enabled": true,
     "_materials": [
@@ -3630,14 +3656,14 @@
     "_name": "Button Circle",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 69
+      "__id__": 70
     },
     "_children": [],
     "_active": true,
     "_level": 6,
     "_components": [
       {
-        "__id__": 73
+        "__id__": 74
       }
     ],
     "_prefab": null,
@@ -3688,7 +3714,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 72
+      "__id__": 73
     },
     "_enabled": true,
     "_materials": [
@@ -3720,14 +3746,14 @@
     "_name": "Joystick Action Bg",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 69
+      "__id__": 70
     },
     "_children": [],
     "_active": true,
     "_level": 6,
     "_components": [
       {
-        "__id__": 75
+        "__id__": 76
       }
     ],
     "_prefab": null,
@@ -3778,7 +3804,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 74
+      "__id__": 75
     },
     "_enabled": true,
     "_materials": [
@@ -3810,14 +3836,14 @@
     "_name": "Icon Skill ",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 69
+      "__id__": 70
     },
     "_children": [],
     "_active": true,
     "_level": 6,
     "_components": [
       {
-        "__id__": 77
+        "__id__": 78
       }
     ],
     "_prefab": null,
@@ -3868,7 +3894,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 76
+      "__id__": 77
     },
     "_enabled": true,
     "_materials": [
@@ -3900,17 +3926,17 @@
     "_name": "Sprite CooldownFill",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 69
+      "__id__": 70
     },
     "_children": [],
     "_active": true,
     "_level": 6,
     "_components": [
       {
-        "__id__": 79
+        "__id__": 80
       },
       {
-        "__id__": 80
+        "__id__": 81
       }
     ],
     "_prefab": null,
@@ -3961,7 +3987,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 78
+      "__id__": 79
     },
     "_enabled": true,
     "_materials": [
@@ -3993,12 +4019,12 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 78
+      "__id__": 79
     },
     "_enabled": true,
     "_N$totalLength": 1,
     "_N$barSprite": {
-      "__id__": 79
+      "__id__": 80
     },
     "_N$mode": 2,
     "_N$progress": 1,
@@ -4010,17 +4036,17 @@
     "_name": "Label_CooldownTime",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 69
+      "__id__": 70
     },
     "_children": [],
     "_active": true,
     "_level": 6,
     "_components": [
       {
-        "__id__": 82
+        "__id__": 83
       },
       {
-        "__id__": 83
+        "__id__": 84
       }
     ],
     "_prefab": null,
@@ -4071,7 +4097,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 81
+      "__id__": 82
     },
     "_enabled": true,
     "_materials": [
@@ -4101,7 +4127,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 81
+      "__id__": 82
     },
     "_enabled": true,
     "_color": {
@@ -4119,14 +4145,14 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 69
+      "__id__": 70
     },
     "_enabled": true,
     "duration": 0.1,
     "zoomScale": 1.2,
     "clickEvents": [
       {
-        "__id__": 85
+        "__id__": 86
       }
     ],
     "_N$interactable": true,
@@ -4187,7 +4213,7 @@
   {
     "__type__": "cc.ClickEvent",
     "target": {
-      "__id__": 86
+      "__id__": 87
     },
     "component": "",
     "_componentId": "005a8TI7ClE64yS5jCmXkj8",
@@ -4199,14 +4225,14 @@
     "_name": "CooldownSkill01",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 87
+      "__id__": 88
     },
     "_children": [],
     "_active": true,
     "_level": 3,
     "_components": [
       {
-        "__id__": 128
+        "__id__": 110
       }
     ],
     "_prefab": null,
@@ -4257,17 +4283,17 @@
     "_name": "SkillController",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 88
+      "__id__": 89
     },
     "_children": [
       {
-        "__id__": 86
+        "__id__": 87
       },
       {
-        "__id__": 89
+        "__id__": 90
       },
       {
-        "__id__": 108
+        "__id__": 109
       }
     ],
     "_active": true,
@@ -4325,7 +4351,7 @@
     },
     "_children": [
       {
-        "__id__": 87
+        "__id__": 88
       }
     ],
     "_active": true,
@@ -4379,14 +4405,14 @@
     "_name": "CooldownSkill02",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 87
+      "__id__": 88
     },
     "_children": [],
     "_active": true,
     "_level": 3,
     "_components": [
       {
-        "__id__": 90
+        "__id__": 91
       }
     ],
     "_prefab": null,
@@ -4437,14 +4463,14 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 89
+      "__id__": 90
     },
     "_enabled": true,
     "cooldownProgressBar": {
-      "__id__": 91
+      "__id__": 92
     },
     "cooldownLabel": {
-      "__id__": 103
+      "__id__": 104
     },
     "cooldownDuration": 5,
     "buttonComponent": null,
@@ -4457,12 +4483,12 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 92
+      "__id__": 93
     },
     "_enabled": true,
     "_N$totalLength": 1,
     "_N$barSprite": {
-      "__id__": 107
+      "__id__": 108
     },
     "_N$mode": 2,
     "_N$progress": 1,
@@ -4474,17 +4500,17 @@
     "_name": "Sprite CooldownFill",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 93
+      "__id__": 94
     },
     "_children": [],
     "_active": true,
     "_level": 6,
     "_components": [
       {
-        "__id__": 107
+        "__id__": 108
       },
       {
-        "__id__": 91
+        "__id__": 92
       }
     ],
     "_prefab": null,
@@ -4535,33 +4561,33 @@
     "_name": "Skill 02",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 68
+      "__id__": 69
     },
     "_children": [
       {
-        "__id__": 94
+        "__id__": 95
       },
       {
-        "__id__": 96
+        "__id__": 97
       },
       {
-        "__id__": 98
+        "__id__": 99
       },
       {
-        "__id__": 100
+        "__id__": 101
       },
       {
-        "__id__": 92
+        "__id__": 93
       },
       {
-        "__id__": 102
+        "__id__": 103
       }
     ],
     "_active": false,
     "_level": 5,
     "_components": [
       {
-        "__id__": 105
+        "__id__": 106
       }
     ],
     "_prefab": null,
@@ -4612,14 +4638,14 @@
     "_name": "InnerBg",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 93
+      "__id__": 94
     },
     "_children": [],
     "_active": true,
     "_level": 6,
     "_components": [
       {
-        "__id__": 95
+        "__id__": 96
       }
     ],
     "_prefab": null,
@@ -4670,7 +4696,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 94
+      "__id__": 95
     },
     "_enabled": true,
     "_materials": [
@@ -4702,14 +4728,14 @@
     "_name": "Button Circle  Skill 02",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 93
+      "__id__": 94
     },
     "_children": [],
     "_active": true,
     "_level": 6,
     "_components": [
       {
-        "__id__": 97
+        "__id__": 98
       }
     ],
     "_prefab": null,
@@ -4760,7 +4786,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 96
+      "__id__": 97
     },
     "_enabled": true,
     "_materials": [
@@ -4792,14 +4818,14 @@
     "_name": " Action Bg",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 93
+      "__id__": 94
     },
     "_children": [],
     "_active": true,
     "_level": 6,
     "_components": [
       {
-        "__id__": 99
+        "__id__": 100
       }
     ],
     "_prefab": null,
@@ -4850,7 +4876,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 98
+      "__id__": 99
     },
     "_enabled": true,
     "_materials": [
@@ -4882,14 +4908,14 @@
     "_name": "Icon",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 93
+      "__id__": 94
     },
     "_children": [],
     "_active": true,
     "_level": 6,
     "_components": [
       {
-        "__id__": 101
+        "__id__": 102
       }
     ],
     "_prefab": null,
@@ -4940,7 +4966,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 100
+      "__id__": 101
     },
     "_enabled": true,
     "_materials": [
@@ -4972,17 +4998,17 @@
     "_name": "Label_CooldownTime",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 93
+      "__id__": 94
     },
     "_children": [],
     "_active": true,
     "_level": 6,
     "_components": [
       {
-        "__id__": 103
+        "__id__": 104
       },
       {
-        "__id__": 104
+        "__id__": 105
       }
     ],
     "_prefab": null,
@@ -5033,7 +5059,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 102
+      "__id__": 103
     },
     "_enabled": true,
     "_materials": [
@@ -5063,7 +5089,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 102
+      "__id__": 103
     },
     "_enabled": true,
     "_color": {
@@ -5081,14 +5107,14 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 93
+      "__id__": 94
     },
     "_enabled": true,
     "duration": 0.1,
     "zoomScale": 1.2,
     "clickEvents": [
       {
-        "__id__": 106
+        "__id__": 107
       }
     ],
     "_N$interactable": true,
@@ -5149,7 +5175,7 @@
   {
     "__type__": "cc.ClickEvent",
     "target": {
-      "__id__": 89
+      "__id__": 90
     },
     "component": "",
     "_componentId": "005a8TI7ClE64yS5jCmXkj8",
@@ -5161,7 +5187,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 92
+      "__id__": 93
     },
     "_enabled": true,
     "_materials": [
@@ -5193,15 +5219,13 @@
     "_name": "CooldownSkill03",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 87
+      "__id__": 88
     },
     "_children": [],
     "_active": true,
     "_level": 3,
     "_components": [
-      {
-        "__id__": 109
-      }
+      null
     ],
     "_prefab": null,
     "_opacity": 255,
@@ -5251,133 +5275,55 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 108
+      "__id__": 87
     },
     "_enabled": true,
     "cooldownProgressBar": {
-      "__id__": 110
+      "__id__": 81
     },
     "cooldownLabel": {
-      "__id__": 122
+      "__id__": 83
     },
-    "cooldownDuration": 15,
+    "cooldownDuration": 5,
     "buttonComponent": {
-      "__id__": 124
+      "__id__": 85
     },
     "_currentTime": 0,
     "_isCoolingDown": false,
-    "_id": "90vXAKq89G0Y8HOfnYPBvz"
-  },
-  {
-    "__type__": "cc.ProgressBar",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 111
-    },
-    "_enabled": true,
-    "_N$totalLength": 1,
-    "_N$barSprite": {
-      "__id__": 127
-    },
-    "_N$mode": 2,
-    "_N$progress": 1,
-    "_N$reverse": false,
-    "_id": "82qby8iURIubEe4SfGCVak"
-  },
-  {
-    "__type__": "cc.Node",
-    "_name": "Sprite CooldownFill",
-    "_objFlags": 0,
-    "_parent": {
-      "__id__": 112
-    },
-    "_children": [],
-    "_active": true,
-    "_level": 6,
-    "_components": [
-      {
-        "__id__": 127
-      },
-      {
-        "__id__": 110
-      }
-    ],
-    "_prefab": null,
-    "_opacity": 139.485,
-    "_color": {
-      "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
-      "b": 0,
-      "a": 255
-    },
-    "_contentSize": {
-      "__type__": "cc.Size",
-      "width": 95,
-      "height": 95
-    },
-    "_anchorPoint": {
-      "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.5
-    },
-    "_position": {
-      "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0,
-      "z": 0
-    },
-    "_scale": {
-      "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
-      "z": 1
-    },
-    "_eulerAngles": {
-      "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0,
-      "z": 0
-    },
-    "_skewX": 0,
-    "_skewY": 0,
-    "_is3DNode": false,
-    "groupIndex": 0,
-    "_id": "18jCcVbEhLXouQDZPXxfKM"
+    "_id": "99mRjLiAxJ7ahBig/LbIgG"
   },
   {
     "__type__": "cc.Node",
     "_name": "Skill 03",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 68
+      "__id__": 69
     },
     "_children": [
       {
-        "__id__": 113
+        "__id__": 112
       },
       {
-        "__id__": 115
+        "__id__": 114
       },
       {
-        "__id__": 117
+        "__id__": 116
       },
       {
-        "__id__": 119
-      },
-      {
-        "__id__": 111
+        "__id__": 118
       },
       {
         "__id__": 121
+      },
+      {
+        "__id__": 123
       }
     ],
     "_active": true,
     "_level": 5,
     "_components": [
       {
-        "__id__": 124
+        "__id__": 126
       }
     ],
     "_prefab": null,
@@ -5428,14 +5374,14 @@
     "_name": "Joystick_Action_l_White_InnerBg",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 112
+      "__id__": 111
     },
     "_children": [],
     "_active": true,
     "_level": 6,
     "_components": [
       {
-        "__id__": 114
+        "__id__": 113
       }
     ],
     "_prefab": null,
@@ -5486,7 +5432,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 113
+      "__id__": 112
     },
     "_enabled": true,
     "_materials": [
@@ -5515,107 +5461,17 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Button_Circle_01_Red",
-    "_objFlags": 0,
-    "_parent": {
-      "__id__": 112
-    },
-    "_children": [],
-    "_active": true,
-    "_level": 6,
-    "_components": [
-      {
-        "__id__": 116
-      }
-    ],
-    "_prefab": null,
-    "_opacity": 255,
-    "_color": {
-      "__type__": "cc.Color",
-      "r": 0,
-      "g": 0,
-      "b": 0,
-      "a": 255
-    },
-    "_contentSize": {
-      "__type__": "cc.Size",
-      "width": 95,
-      "height": 95
-    },
-    "_anchorPoint": {
-      "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.5
-    },
-    "_position": {
-      "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0,
-      "z": 0
-    },
-    "_scale": {
-      "__type__": "cc.Vec3",
-      "x": 1,
-      "y": 1,
-      "z": 1
-    },
-    "_eulerAngles": {
-      "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0,
-      "z": 0
-    },
-    "_skewX": 0,
-    "_skewY": 0,
-    "_is3DNode": false,
-    "groupIndex": 0,
-    "_id": "26JDbiryFOFJd0xbAN9kvY"
-  },
-  {
-    "__type__": "cc.Sprite",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 115
-    },
-    "_enabled": true,
-    "_materials": [
-      {
-        "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
-      }
-    ],
-    "_srcBlendFactor": 770,
-    "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "1540d3a6-15da-41b1-91f7-6352f128c85e"
-    },
-    "_type": 0,
-    "_sizeMode": 0,
-    "_fillType": 0,
-    "_fillCenter": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_fillStart": 0,
-    "_fillRange": 0,
-    "_isTrimmedMode": true,
-    "_atlas": null,
-    "_id": "e8hInyvfRFjbvAter6iEjk"
-  },
-  {
-    "__type__": "cc.Node",
     "_name": "Joystick_Action_m_4sell_Bg",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 112
+      "__id__": 111
     },
     "_children": [],
     "_active": true,
     "_level": 6,
     "_components": [
       {
-        "__id__": 118
+        "__id__": 115
       }
     ],
     "_prefab": null,
@@ -5666,7 +5522,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 117
+      "__id__": 114
     },
     "_enabled": true,
     "_materials": [
@@ -5698,14 +5554,14 @@
     "_name": "icon",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 112
+      "__id__": 111
     },
     "_children": [],
     "_active": true,
     "_level": 6,
     "_components": [
       {
-        "__id__": 120
+        "__id__": 117
       }
     ],
     "_prefab": null,
@@ -5756,7 +5612,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 119
+      "__id__": 116
     },
     "_enabled": true,
     "_materials": [
@@ -5785,10 +5641,120 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "Label_CooldownTime",
+    "_name": "Sprite CooldownFill",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 112
+      "__id__": 111
+    },
+    "_children": [],
+    "_active": true,
+    "_level": 6,
+    "_components": [
+      {
+        "__id__": 119
+      },
+      {
+        "__id__": 120
+      }
+    ],
+    "_prefab": null,
+    "_opacity": 139.485,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 0,
+      "g": 0,
+      "b": 0,
+      "a": 255
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 95,
+      "height": 95
+    },
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_position": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_scale": {
+      "__type__": "cc.Vec3",
+      "x": 1,
+      "y": 1,
+      "z": 1
+    },
+    "_eulerAngles": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_is3DNode": false,
+    "groupIndex": 0,
+    "_id": "18jCcVbEhLXouQDZPXxfKM"
+  },
+  {
+    "__type__": "cc.Sprite",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 118
+    },
+    "_enabled": true,
+    "_materials": [
+      {
+        "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
+      }
+    ],
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 771,
+    "_spriteFrame": {
+      "__uuid__": "1540d3a6-15da-41b1-91f7-6352f128c85e"
+    },
+    "_type": 3,
+    "_sizeMode": 0,
+    "_fillType": 2,
+    "_fillCenter": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_fillStart": -0.75,
+    "_fillRange": 0.5,
+    "_isTrimmedMode": true,
+    "_atlas": null,
+    "_id": "f4NqXprXlAQZlZ5DGtTORy"
+  },
+  {
+    "__type__": "cc.ProgressBar",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 118
+    },
+    "_enabled": true,
+    "_N$totalLength": 1,
+    "_N$barSprite": {
+      "__id__": 119
+    },
+    "_N$mode": 2,
+    "_N$progress": 0.5,
+    "_N$reverse": false,
+    "_id": "82qby8iURIubEe4SfGCVak"
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "Button_Circle_01_Red",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 111
     },
     "_children": [],
     "_active": true,
@@ -5796,9 +5762,99 @@
     "_components": [
       {
         "__id__": 122
+      }
+    ],
+    "_prefab": null,
+    "_opacity": 255,
+    "_color": {
+      "__type__": "cc.Color",
+      "r": 0,
+      "g": 0,
+      "b": 0,
+      "a": 255
+    },
+    "_contentSize": {
+      "__type__": "cc.Size",
+      "width": 95,
+      "height": 95
+    },
+    "_anchorPoint": {
+      "__type__": "cc.Vec2",
+      "x": 0.5,
+      "y": 0.5
+    },
+    "_position": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_scale": {
+      "__type__": "cc.Vec3",
+      "x": 1,
+      "y": 1,
+      "z": 1
+    },
+    "_eulerAngles": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_skewX": 0,
+    "_skewY": 0,
+    "_is3DNode": false,
+    "groupIndex": 0,
+    "_id": "26JDbiryFOFJd0xbAN9kvY"
+  },
+  {
+    "__type__": "cc.Sprite",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 121
+    },
+    "_enabled": true,
+    "_materials": [
+      {
+        "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
+      }
+    ],
+    "_srcBlendFactor": 770,
+    "_dstBlendFactor": 771,
+    "_spriteFrame": {
+      "__uuid__": "1540d3a6-15da-41b1-91f7-6352f128c85e"
+    },
+    "_type": 0,
+    "_sizeMode": 0,
+    "_fillType": 0,
+    "_fillCenter": {
+      "__type__": "cc.Vec2",
+      "x": 0,
+      "y": 0
+    },
+    "_fillStart": 0,
+    "_fillRange": 0,
+    "_isTrimmedMode": true,
+    "_atlas": null,
+    "_id": "e8hInyvfRFjbvAter6iEjk"
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "Label_CooldownTime",
+    "_objFlags": 0,
+    "_parent": {
+      "__id__": 111
+    },
+    "_children": [],
+    "_active": true,
+    "_level": 6,
+    "_components": [
+      {
+        "__id__": 124
       },
       {
-        "__id__": 123
+        "__id__": 125
       }
     ],
     "_prefab": null,
@@ -5849,7 +5905,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 121
+      "__id__": 123
     },
     "_enabled": true,
     "_materials": [
@@ -5879,7 +5935,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 121
+      "__id__": 123
     },
     "_enabled": true,
     "_color": {
@@ -5897,17 +5953,17 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 112
+      "__id__": 111
     },
     "_enabled": true,
     "duration": 0.1,
     "zoomScale": 1.2,
     "clickEvents": [
       {
-        "__id__": 125
+        "__id__": 127
       },
       {
-        "__id__": 126
+        "__id__": 128
       }
     ],
     "_N$interactable": true,
@@ -5968,83 +6024,29 @@
   {
     "__type__": "cc.ClickEvent",
     "target": {
-      "__id__": 108
+      "__id__": 109
     },
     "component": "",
-    "_componentId": "005a8TI7ClE64yS5jCmXkj8",
+    "_componentId": "e6c71HJBLFL5YOmUFmBPomn",
     "handler": "onSkillButtonClicked",
     "customEventData": ""
   },
   {
     "__type__": "cc.ClickEvent",
     "target": {
-      "__id__": 48
+      "__id__": 49
     },
     "component": "",
-    "_componentId": "e182bNuasVGcJMuOPIUd/KC",
+    "_componentId": "378c76Kk3hIZ5iP7qsPWJg0",
     "handler": "triggerBombDropFromUI",
     "customEventData": ""
-  },
-  {
-    "__type__": "cc.Sprite",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 111
-    },
-    "_enabled": true,
-    "_materials": [
-      {
-        "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
-      }
-    ],
-    "_srcBlendFactor": 770,
-    "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "1540d3a6-15da-41b1-91f7-6352f128c85e"
-    },
-    "_type": 3,
-    "_sizeMode": 0,
-    "_fillType": 2,
-    "_fillCenter": {
-      "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.5
-    },
-    "_fillStart": -0.75,
-    "_fillRange": 1,
-    "_isTrimmedMode": true,
-    "_atlas": null,
-    "_id": "f4NqXprXlAQZlZ5DGtTORy"
-  },
-  {
-    "__type__": "005a8TI7ClE64yS5jCmXkj8",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 86
-    },
-    "_enabled": true,
-    "cooldownProgressBar": {
-      "__id__": 80
-    },
-    "cooldownLabel": {
-      "__id__": 82
-    },
-    "cooldownDuration": 5,
-    "buttonComponent": {
-      "__id__": 84
-    },
-    "_currentTime": 0,
-    "_isCoolingDown": false,
-    "_id": "99mRjLiAxJ7ahBig/LbIgG"
   },
   {
     "__type__": "cc.Node",
     "_name": "Down ",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 55
+      "__id__": 56
     },
     "_children": [
       {
@@ -6450,7 +6452,7 @@
   {
     "__type__": "cc.ClickEvent",
     "target": {
-      "__id__": 48
+      "__id__": 49
     },
     "component": "",
     "_componentId": "e182bNuasVGcJMuOPIUd/KC",
@@ -6462,7 +6464,7 @@
     "_name": "BorderFrame_Circle",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 54
+      "__id__": 55
     },
     "_children": [],
     "_active": true,
@@ -6552,7 +6554,7 @@
     "_name": "Joystick_Action_m_4sell_Bg",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 54
+      "__id__": 55
     },
     "_children": [],
     "_active": true,
@@ -6642,7 +6644,7 @@
     "_name": "function_icon_arrow_up",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 54
+      "__id__": 55
     },
     "_children": [],
     "_active": true,
@@ -6732,7 +6734,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 54
+      "__id__": 55
     },
     "_enabled": true,
     "duration": 0.1,
@@ -6800,73 +6802,12 @@
   {
     "__type__": "cc.ClickEvent",
     "target": {
-      "__id__": 48
+      "__id__": 49
     },
     "component": "",
     "_componentId": "e182bNuasVGcJMuOPIUd/KC",
     "handler": "startMoveUp",
     "customEventData": ""
-  },
-  {
-    "__type__": "378c76Kk3hIZ5iP7qsPWJg0",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 48
-    },
-    "_enabled": true,
-    "spineAnim": {
-      "__id__": 51
-    },
-    "moveSpeed": 200,
-    "idleAnimName": "hoverboard",
-    "portalEnterAnimName": "portal",
-    "moveUpAnimName": "move_up",
-    "moveDownAnimName": "move_down",
-    "shootAnimName": "shoot",
-    "deathAnimName": "death",
-    "minY": -250,
-    "maxY": 250,
-    "buttonUpNode": {
-      "__id__": 54
-    },
-    "buttonDownNode": {
-      "__id__": 129
-    },
-    "actionButtonNode": {
-      "__id__": 58
-    },
-    "bulletPrefab": {
-      "__uuid__": "8badb308-01c2-4845-bf47-d2c87f7a6cfa"
-    },
-    "bulletSpawnPoint": {
-      "__id__": 50
-    },
-    "bulletSpeed": 800,
-    "bombPrefab": {
-      "__uuid__": "5cfd2cfd-b3ef-4ce9-b714-ceaf91666766"
-    },
-    "bombSpawnHeight": 400,
-    "bombFallSpeed": 300,
-    "bombsContainerNode": {
-      "__id__": 44
-    },
-    "bombDropButtonNode": {
-      "__id__": 112
-    },
-    "simulatedPressDuration": 0.1,
-    "bombCooldown": 15,
-    "invincibilityDuration": 2,
-    "blinkInterval": 0.1,
-    "blinkOpacity": 100,
-    "maxLives": 5,
-    "heartIconPrefab": {
-      "__uuid__": "9715d2b5-203e-41c6-852f-5b4e0aacf80b"
-    },
-    "heartsContainerNode": {
-      "__id__": 45
-    },
-    "_id": "4bwxjdvZZBBo8AxdyK6N3C"
   },
   {
     "__type__": "cc.Node",
@@ -6877,26 +6818,26 @@
     },
     "_children": [
       {
-        "__id__": 148
+        "__id__": 147
       },
       {
-        "__id__": 151
+        "__id__": 150
       },
       {
-        "__id__": 153
+        "__id__": 152
       },
       {
-        "__id__": 155
+        "__id__": 154
       }
     ],
     "_active": false,
     "_level": 2,
     "_components": [
       {
-        "__id__": 172
+        "__id__": 171
       },
       {
-        "__id__": 173
+        "__id__": 172
       }
     ],
     "_prefab": null,
@@ -6947,17 +6888,17 @@
     "_name": "Background_BattlePass_Right",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 147
+      "__id__": 146
     },
     "_children": [],
     "_active": true,
     "_level": 3,
     "_components": [
       {
-        "__id__": 149
+        "__id__": 148
       },
       {
-        "__id__": 150
+        "__id__": 149
       }
     ],
     "_prefab": null,
@@ -7008,7 +6949,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 148
+      "__id__": 147
     },
     "_enabled": true,
     "_materials": [
@@ -7040,7 +6981,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 148
+      "__id__": 147
     },
     "_enabled": true,
     "_defaultClip": null,
@@ -7053,14 +6994,14 @@
     "_name": "Title_Ribbon_01_Red",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 147
+      "__id__": 146
     },
     "_children": [],
     "_active": true,
     "_level": 3,
     "_components": [
       {
-        "__id__": 152
+        "__id__": 151
       }
     ],
     "_prefab": null,
@@ -7111,7 +7052,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 151
+      "__id__": 150
     },
     "_enabled": true,
     "_materials": [
@@ -7143,14 +7084,14 @@
     "_name": "Label Game Over",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 147
+      "__id__": 146
     },
     "_children": [],
     "_active": true,
     "_level": 3,
     "_components": [
       {
-        "__id__": 154
+        "__id__": 153
       }
     ],
     "_prefab": null,
@@ -7201,7 +7142,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 153
+      "__id__": 152
     },
     "_enabled": true,
     "_materials": [
@@ -7233,14 +7174,14 @@
     "_name": "Button",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 147
+      "__id__": 146
     },
     "_children": [
       {
-        "__id__": 156
+        "__id__": 155
       },
       {
-        "__id__": 164
+        "__id__": 163
       }
     ],
     "_active": true,
@@ -7294,18 +7235,18 @@
     "_name": "Button Play Again ",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 155
+      "__id__": 154
     },
     "_children": [
       {
-        "__id__": 157
+        "__id__": 156
       }
     ],
     "_active": true,
     "_level": 4,
     "_components": [
       {
-        "__id__": 162
+        "__id__": 161
       }
     ],
     "_prefab": null,
@@ -7356,21 +7297,21 @@
     "_name": "Background",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 156
+      "__id__": 155
     },
     "_children": [
       {
-        "__id__": 158
+        "__id__": 157
       }
     ],
     "_active": true,
     "_level": 2,
     "_components": [
       {
-        "__id__": 160
+        "__id__": 159
       },
       {
-        "__id__": 161
+        "__id__": 160
       }
     ],
     "_prefab": null,
@@ -7421,14 +7362,14 @@
     "_name": "function_icon_reload",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 157
+      "__id__": 156
     },
     "_children": [],
     "_active": true,
     "_level": 3,
     "_components": [
       {
-        "__id__": 159
+        "__id__": 158
       }
     ],
     "_prefab": null,
@@ -7479,7 +7420,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 158
+      "__id__": 157
     },
     "_enabled": true,
     "_materials": [
@@ -7511,7 +7452,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 157
+      "__id__": 156
     },
     "_enabled": true,
     "_materials": [
@@ -7543,7 +7484,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 157
+      "__id__": 156
     },
     "_enabled": true,
     "alignMode": 0,
@@ -7570,14 +7511,14 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 156
+      "__id__": 155
     },
     "_enabled": true,
     "duration": 0.1,
     "zoomScale": 1.2,
     "clickEvents": [
       {
-        "__id__": 163
+        "__id__": 162
       }
     ],
     "_N$interactable": true,
@@ -7645,14 +7586,14 @@
       "__uuid__": "29158224-f8dd-4661-a796-1ffab537140e"
     },
     "_N$target": {
-      "__id__": 157
+      "__id__": 156
     },
     "_id": "6dGuqZp6BDKo6SFyX1cNpn"
   },
   {
     "__type__": "cc.ClickEvent",
     "target": {
-      "__id__": 147
+      "__id__": 146
     },
     "component": "",
     "_componentId": "76928IOMClBmKFwGnhlwBQa",
@@ -7664,18 +7605,18 @@
     "_name": "Button Back Lobby Screen",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 155
+      "__id__": 154
     },
     "_children": [
       {
-        "__id__": 165
+        "__id__": 164
       }
     ],
     "_active": true,
     "_level": 4,
     "_components": [
       {
-        "__id__": 170
+        "__id__": 169
       }
     ],
     "_prefab": null,
@@ -7726,21 +7667,21 @@
     "_name": "Background",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 164
+      "__id__": 163
     },
     "_children": [
       {
-        "__id__": 166
+        "__id__": 165
       }
     ],
     "_active": true,
     "_level": 2,
     "_components": [
       {
-        "__id__": 168
+        "__id__": 167
       },
       {
-        "__id__": 169
+        "__id__": 168
       }
     ],
     "_prefab": null,
@@ -7791,14 +7732,14 @@
     "_name": "function_icon_home_1",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 165
+      "__id__": 164
     },
     "_children": [],
     "_active": true,
     "_level": 3,
     "_components": [
       {
-        "__id__": 167
+        "__id__": 166
       }
     ],
     "_prefab": null,
@@ -7849,7 +7790,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 166
+      "__id__": 165
     },
     "_enabled": true,
     "_materials": [
@@ -7881,7 +7822,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 165
+      "__id__": 164
     },
     "_enabled": true,
     "_materials": [
@@ -7913,7 +7854,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 165
+      "__id__": 164
     },
     "_enabled": true,
     "alignMode": 0,
@@ -7940,14 +7881,14 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 164
+      "__id__": 163
     },
     "_enabled": true,
     "duration": 0.1,
     "zoomScale": 1.2,
     "clickEvents": [
       {
-        "__id__": 171
+        "__id__": 170
       }
     ],
     "_N$interactable": true,
@@ -8015,14 +7956,14 @@
       "__uuid__": "29158224-f8dd-4661-a796-1ffab537140e"
     },
     "_N$target": {
-      "__id__": 165
+      "__id__": 164
     },
     "_id": "eaQG4BvSVGMa9KQZElROXX"
   },
   {
     "__type__": "cc.ClickEvent",
     "target": {
-      "__id__": 147
+      "__id__": 146
     },
     "component": "",
     "_componentId": "76928IOMClBmKFwGnhlwBQa",
@@ -8034,14 +7975,14 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 147
+      "__id__": 146
     },
     "_enabled": true,
     "retryButton": {
-      "__id__": 162
+      "__id__": 161
     },
     "lobbyButton": {
-      "__id__": 170
+      "__id__": 169
     },
     "lobbySceneName": "Lobby",
     "_isLoadingScene": false,
@@ -8053,11 +7994,11 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 147
+      "__id__": 146
     },
     "_enabled": true,
     "popupNode": {
-      "__id__": 147
+      "__id__": 146
     },
     "closeButtons": [],
     "popupId": "game_over_popup",
