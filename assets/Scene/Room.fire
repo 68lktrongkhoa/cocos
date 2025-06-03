@@ -165,7 +165,7 @@
       "__type__": "cc.Vec3",
       "x": 0,
       "y": 0,
-      "z": 524.8113946933698
+      "z": 525.6774200971543
     },
     "_scale": {
       "__type__": "cc.Vec3",
@@ -6357,7 +6357,7 @@
       "__id__": 48
     },
     "component": "",
-    "_componentId": "378c76Kk3hIZ5iP7qsPWJg0",
+    "_componentId": "de78eM+E0xII5UUo62bCf3P",
     "handler": "stopMoveDown",
     "customEventData": ""
   },
@@ -6707,7 +6707,7 @@
       "__id__": 48
     },
     "component": "",
-    "_componentId": "378c76Kk3hIZ5iP7qsPWJg0",
+    "_componentId": "de78eM+E0xII5UUo62bCf3P",
     "handler": "startMoveUp",
     "customEventData": ""
   },
@@ -7892,15 +7892,21 @@
     "_id": "20iTVjnpVEm44LstoGytD6"
   },
   {
-    "__type__": "a77c0A84clHPqqfAoq0LX67",
+    "__type__": "1a2dfp0Y/VB5JylH7ceWP3d",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 144
     },
     "_enabled": true,
-    "popupIdToOpen": "GameOverPopup",
-    "_id": "c4HMLk6N5BBoJluwn1+oRU"
+    "popupNode": {
+      "__id__": 144
+    },
+    "closeButtons": [],
+    "popupId": "GameOverPopup",
+    "_isShown": false,
+    "_boundHandleOpenPopupEvent": null,
+    "_id": "a90c2ptGBIcos34VY6WJav"
   },
   {
     "__type__": "cc.Canvas",

@@ -32,6 +32,7 @@ cc.Class({
     },
     
     openGameOverPopup() {
+        cc.log("Opening Game Over Popup");
         mEmitter.instance.emit(UIConstants.EVENT_NAME.OPEN_POPUP, { popupId: UIConstants.POPUP_ID.GAME_OVER });
     }
 });
