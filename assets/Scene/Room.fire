@@ -165,7 +165,7 @@
       "__type__": "cc.Vec3",
       "x": 0,
       "y": 0,
-      "z": 525.6774200971543
+      "z": 610.5479096680293
     },
     "_scale": {
       "__type__": "cc.Vec3",
@@ -2630,7 +2630,7 @@
       "__id__": 112
     },
     "simulatedPressDuration": 0.1,
-    "bombCooldown": 15,
+    "bombCooldown": 5,
     "invincibilityDuration": 2,
     "blinkInterval": 0.1,
     "blinkOpacity": 100,
@@ -6358,7 +6358,7 @@
     },
     "component": "",
     "_componentId": "de78eM+E0xII5UUo62bCf3P",
-    "handler": "stopMoveDown",
+    "handler": "onKeyDown",
     "customEventData": ""
   },
   {
@@ -6708,7 +6708,7 @@
     },
     "component": "",
     "_componentId": "de78eM+E0xII5UUo62bCf3P",
-    "handler": "startMoveUp",
+    "handler": "onKeyUp",
     "customEventData": ""
   },
   {

@@ -1,5 +1,14 @@
 const mEmitter = require('mEmitter');
-const UIConstants = require('UIConstants');
+const UIConstants = require('UIConstants'); 
+
+const EnteringPortalState = require('./PlayerStates/EnteringPortalState');
+const IdleState = require('./PlayerStates/IdleState');
+const MovingUpState = require('./PlayerStates/MovingUpState');
+const MovingDownState = require('./PlayerStates/MovingDownState');
+const InvincibleState = require('./PlayerStates/InvincibleState');
+const DeadState = require('./PlayerStates/DeadState');
+
+
 cc.Class({
     extends: cc.Component,
 
@@ -27,8 +36,8 @@ cc.Class({
         shootAnimName: {
             default: "shoot"
         },
-        deathAnimName: { 
-            default: "death", 
+        deathAnimName: {
+            default: "death",
             type: cc.String
         },
         minY: {
@@ -72,27 +81,27 @@ cc.Class({
             type: cc.Prefab
         },
         bombSpawnHeight: {
-            default: 400,
+            default: 400, 
             type: cc.Float
         },
         bombFallSpeed: {
             default: 300,
             type: cc.Float
         },
-        bombsContainerNode: {
+        bombsContainerNode: { 
             default: null,
             type: cc.Node
         },
-        bombDropButtonNode: {
+        bombDropButtonNode: { 
             default: null,
             type: cc.Node
         },
-        simulatedPressDuration: {
+        simulatedPressDuration: { 
             default: 0.1,
             type: cc.Float
         },
-        bombCooldown: {
-            default: 15.0,
+        bombCooldown: { 
+            default: 5.0,
             type: cc.Float
         },
 
@@ -120,97 +129,78 @@ cc.Class({
             default: null,
             type: cc.Node
         },
-
+        lastOriginalInputEvent: null,
     },
 
     onLoad() {
         if (!this.spineAnim) {
             this.enabled = false;
-            cc.error("CharacterController: SpineAnim chưa được gán!");
+            cc.error("PlayerController: SpineAnim chưa được gán!");
             return;
         }
 
-        let manager = cc.director.getCollisionManager();
-        if (!manager.enabled) {
-            manager.enabled = true;
+        let collisionManager = cc.director.getCollisionManager();
+        if (!collisionManager.enabled) {
+            collisionManager.enabled = true;
         }
+
         this.currentLives = this.maxLives;
         this._heartNodes = [];
         this.initHeartsUI();
 
         this.moveDirection = 0;
-        this.isMovingUp = false;
-        this.isMovingDown = false;
-        this.isShooting = false;
         this.isInvincible = false;
         this.isDead = false;
+        this.isShooting = false;
         this.originalOpacity = this.node.opacity;
-        this.canDropBombByKey = false;
-        this.scheduleOnce(() => {
-            this.canDropBombByKey = true;
-        }, this.bombCooldown);
 
-        this.playEnterSequence();
+        this.canDropBombByKey = true; 
+        this.bombDropButtonComponent = this.bombDropButtonNode ? this.bombDropButtonNode.getComponent(cc.Button) : null;
+        this.actionButtonComponent = this.actionButtonNode ? this.actionButtonNode.getComponent(cc.Button) : null;
+
+
+        this.currentState = new EnteringPortalState();
+        this.currentState.enter(this);
 
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
 
-        if (this.bombDropButtonNode) {
-            this.bombDropButtonComponent = this.bombDropButtonNode.getComponent(cc.Button);
-            if (!this.bombDropButtonComponent) {
-                cc.warn("CharacterController: bombDropButtonNode không có component cc.Button.");
-            }
-        } else {
-            cc.warn("CharacterController: Thuộc tính 'bombDropButtonNode' CHƯA được gán trong Inspector (dùng cho phím Enter).");
-        }
-
         if (this.buttonUpNode) {
-            this.buttonUpNode.on(cc.Node.EventType.TOUCH_START, this.startMoveUp, this);
-            this.buttonUpNode.on(cc.Node.EventType.TOUCH_END, this.stopMoveUp, this);
-            this.buttonUpNode.on(cc.Node.EventType.TOUCH_CANCEL, this.stopMoveUp, this);
-        } else {
-            cc.warn("CharacterController: Thuộc tính 'buttonUpNode' CHƯA được gán trong Inspector.");
+            this.buttonUpNode.on(cc.Node.EventType.TOUCH_START, (event) => this.onTouchEvent(event, 'TOUCH_START', this.buttonUpNode), this);
+            this.buttonUpNode.on(cc.Node.EventType.TOUCH_END, (event) => this.onTouchEvent(event, 'TOUCH_END', this.buttonUpNode), this);
+            this.buttonUpNode.on(cc.Node.EventType.TOUCH_CANCEL, (event) => this.onTouchEvent(event, 'TOUCH_CANCEL', this.buttonUpNode), this);
         }
-
         if (this.buttonDownNode) {
-            this.buttonDownNode.on(cc.Node.EventType.TOUCH_START, this.startMoveDown, this);
-            this.buttonDownNode.on(cc.Node.EventType.TOUCH_END, this.stopMoveDown, this);
-            this.buttonDownNode.on(cc.Node.EventType.TOUCH_CANCEL, this.stopMoveDown, this);
-        } else {
-            cc.warn("CharacterController: Thuộc tính 'buttonDownNode' CHƯA được gán trong Inspector.");
+            this.buttonDownNode.on(cc.Node.EventType.TOUCH_START, (event) => this.onTouchEvent(event, 'TOUCH_START', this.buttonDownNode), this);
+            this.buttonDownNode.on(cc.Node.EventType.TOUCH_END, (event) => this.onTouchEvent(event, 'TOUCH_END', this.buttonDownNode), this);
+            this.buttonDownNode.on(cc.Node.EventType.TOUCH_CANCEL, (event) => this.onTouchEvent(event, 'TOUCH_CANCEL', this.buttonDownNode), this);
         }
-
         if (this.actionButtonNode) {
-            this.actionButtonComponent = this.actionButtonNode.getComponent(cc.Button);
-            if (!this.actionButtonComponent) {
-                cc.warn("CharacterController: Thuộc tính 'actionButtonNode' được gán nhưng không có component cc.Button.");
-            }
-        } else {
-            cc.warn("CharacterController: Thuộc tính 'actionButtonNode' CHƯA được gán trong Inspector (dùng cho phím Space).");
+            this.actionButtonNode.on(cc.Node.EventType.TOUCH_START, (event) => this.onTouchEvent(event, 'TOUCH_START', this.actionButtonNode), this);
+            
         }
-
-        if (!this.bulletPrefab) {
-            cc.warn("CharacterController: Thuộc tính 'bulletPrefab' CHƯA được gán.");
-        }
-        if (!this.bulletSpawnPoint) {
-            cc.warn("CharacterController: Thuộc tính 'bulletSpawnPoint' (điểm bắn đạn) CHƯA được gán.");
+        if (this.bombDropButtonNode) {
+            this.bombDropButtonNode.on('click', this.handleBombDropButtonClick, this);
         }
     },
 
-    playEnterSequence() {
-        if (!this.spineAnim) return;
-        this.playAnimation(this.portalEnterAnimName, false, 0, true);
-        this.spineAnim.setCompleteListener((trackEntry) => {
-            if (trackEntry.trackIndex === 0 && trackEntry.animation.name === this.portalEnterAnimName) {
-                this.spineAnim.setCompleteListener(null);
-                this.playAnimation(this.idleAnimName, true, 0, false);
-            }
-        });
+    changeState(newState) {
+        if (this.isDead && newState.name !== "Dead") { 
+            return;
+        }
+        if (this.currentState && typeof this.currentState.exit === 'function') {
+            this.currentState.exit(this);
+        }
+       
+        this.currentState = newState;
+        if (this.currentState && typeof this.currentState.enter === 'function') {
+            this.currentState.enter(this);
+        }
     },
 
     initHeartsUI() {
         if (!this.heartIconPrefab || !this.heartsContainerNode) {
-            cc.warn("CharacterController: Chưa gán HeartIconPrefab hoặc HeartsContainerNode để hiển thị mạng.");
+            cc.warn("PlayerController: Chưa gán HeartIconPrefab hoặc HeartsContainerNode để hiển thị mạng.");
             return;
         }
         this.heartsContainerNode.removeAllChildren();
@@ -222,7 +212,6 @@ cc.Class({
             heart.active = true;
             this._heartNodes.push(heart);
         }
-        cc.log(`Đã khởi tạo ${this.maxLives} trái tim UI.`);
     },
 
     updateHeartsUI() {
@@ -239,54 +228,13 @@ cc.Class({
             return;
         }
         this.currentLives -= amount;
-        this.currentLives = Math.max(0, this.currentLives); 
-
+        this.currentLives = Math.max(0, this.currentLives);
         this.updateHeartsUI();
 
         if (this.currentLives <= 0) {
-            this.handleGameOver();
+            this.changeState(new DeadState());
         } else {
-            this.startBlinkingEffect();
-        }
-    },
-
-    handleGameOver() {
-        if (this.isDead) return;
-
-        cc.log("GAME OVER!");
-        this.isDead = true;
-
-        this.moveDirection = 0;
-        this.isMovingUp = false;
-        this.isMovingDown = false;
-        this.isShooting = false;
-
-        if (this.isInvincible) {
-            this.stopBlinkingEffect();
-        }
-
-        if (this.spineAnim && this.deathAnimName) {
-            this.playAnimation(this.deathAnimName, false, 0, true);
-
-            this.spineAnim.setCompleteListener((trackEntry) => {
-                if (trackEntry.animation.name === this.deathAnimName) {
-                    this.spineAnim.setCompleteListener(null);
-
-                    if (mEmitter && mEmitter.instance && UIConstants && UIConstants.EVENT_NAME && UIConstants.POPUP_ID) {
-                        mEmitter.instance.emit(UIConstants.EVENT_NAME.OPEN_POPUP, { popupId: UIConstants.POPUP_ID.GAME_OVER });
-                    } else {
-                        cc.error("CharacterController: mEmitter hoặc UIConstants chưa được cấu hình đúng để mở popup game over.");
-                    }
-                }
-            });
-        } else {
-            cc.warn("CharacterController: SpineAnim or deathAnimName not set. Cannot play death animation.");
-            if (mEmitter && mEmitter.instance && UIConstants && UIConstants.EVENT_NAME && UIConstants.POPUP_ID) {
-                cc.log(`Phát sự kiện ${UIConstants.EVENT_NAME.OPEN_POPUP} cho ${UIConstants.POPUP_ID.GAME_OVER} (không có animation chết)`);
-                mEmitter.instance.emit(UIConstants.EVENT_NAME.OPEN_POPUP, { popupId: UIConstants.POPUP_ID.GAME_OVER });
-            } else {
-                cc.error("CharacterController: mEmitter hoặc UIConstants chưa được cấu hình đúng để mở popup game over.");
-            }
+            this.changeState(new InvincibleState(this.currentState, this.invincibilityDuration));
         }
     },
 
@@ -295,243 +243,193 @@ cc.Class({
         cc.systemEvent.off(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
 
         if (this.buttonUpNode) {
-            this.buttonUpNode.off(cc.Node.EventType.TOUCH_START, this.startMoveUp, this);
-            this.buttonUpNode.off(cc.Node.EventType.TOUCH_END, this.stopMoveUp, this);
-            this.buttonUpNode.off(cc.Node.EventType.TOUCH_CANCEL, this.stopMoveUp, this);
+            this.buttonUpNode.targetOff(this);
         }
         if (this.buttonDownNode) {
-            this.buttonDownNode.off(cc.Node.EventType.TOUCH_START, this.startMoveDown, this);
-            this.buttonDownNode.off(cc.Node.EventType.TOUCH_END, this.stopMoveDown, this);
-            this.buttonDownNode.off(cc.Node.EventType.TOUCH_CANCEL, this.stopMoveDown, this);
+            this.buttonDownNode.targetOff(this);
         }
+        if (this.actionButtonNode) {
+            this.actionButtonNode.targetOff(this);
+        }
+        if (this.bombDropButtonNode) {
+            this.bombDropButtonNode.targetOff(this);
+        }
+
         if (this.spineAnim) {
             this.spineAnim.setCompleteListener(null);
         }
-        this.unscheduleAllCallbacks();
+        this.unscheduleAllCallbacks(); 
     },
 
     update(dt) {
-        if (this.isDead) return;
-
-        if (this.moveDirection !== 0) {
-            let newY = this.node.y + this.moveDirection * this.moveSpeed * dt;
-            if (typeof this.minY === 'number' && typeof this.maxY === 'number') {
-                newY = Math.max(this.minY, Math.min(this.maxY, newY));
-            }
-            this.node.y = newY;
+        if (this.currentState && typeof this.currentState.update === 'function') {
+            this.currentState.update(this, dt);
         }
     },
+
     playAnimation(animName, loop = false, trackIndex = 0, forceOverride = false) {
         if (!this.spineAnim || !animName) {
             return;
         }
 
-        if (!forceOverride) {
-            if (this.isShooting && animName !== this.shootAnimName && trackIndex === 0) {
+        const currentTrackEntry = this.spineAnim.getCurrent(trackIndex);
+        if (!forceOverride && currentTrackEntry) {
+            const currentAnimName = currentTrackEntry.animation ? currentTrackEntry.animation.name : null;
+            if (currentAnimName === animName && currentTrackEntry.loop === loop) {
                 return;
             }
-            const currentTrackEntry = this.spineAnim.getCurrent(trackIndex);
-            if (currentTrackEntry) {
-                const currentAnimName = currentTrackEntry.animation ? currentTrackEntry.animation.name : null;
-                if (currentAnimName === animName && currentTrackEntry.loop === loop) {
-                    return;
-                }
-            }
-        } else {
-            this.spineAnim.clearTrack(trackIndex);
         }
 
+        if (forceOverride) {
+            this.spineAnim.clearTrack(trackIndex);
+        }
         this.spineAnim.setAnimation(trackIndex, animName, loop);
     },
 
     onKeyDown(event) {
-        switch (event.keyCode) {
-            case cc.macro.KEY.w:
-            case cc.macro.KEY.up:
-                this.isMovingUp = true;
-                this.updateMovementState();
-                break;
-            case cc.macro.KEY.s:
-            case cc.macro.KEY.down:
-                this.isMovingDown = true;
-                this.updateMovementState();
-                break;
-            case cc.macro.KEY.space:
-                if (!this.isShooting) {
-                    this.performShootAndOrAction(event);
-                }
-                break;
-            case cc.macro.KEY.enter:
-                if (this.canDropBombByKey) {
-                    if (this.bombDropButtonNode && this.bombDropButtonComponent && this.bombDropButtonComponent.interactable) {
-                        this.simulateBombDropButtonClick(event);
-                        this.canDropBombByKey = false;
-                        this.scheduleOnce(() => {
-                            this.canDropBombByKey = true;
-                        }, this.bombCooldown);
-                    }
-                } else {
-                    cc.log("CharacterController: Phím Enter - Bom đang trong thời gian hồi chiêu.");
-                }
-                break;
+        if (this.isDead && event.keyCode !== cc.macro.KEY.escape) return;
+
+        if (this.currentState && typeof this.currentState.handleInput === 'function') {
+            this.currentState.handleInput(this, 'KEY_DOWN', event);
+        }
+
+        if (event.keyCode === cc.macro.KEY.enter) {
+            this.handleBombDropKeyPress(event);
         }
     },
 
     onKeyUp(event) {
-        switch (event.keyCode) {
-            case cc.macro.KEY.w:
-            case cc.macro.KEY.up:
-                this.isMovingUp = false;
-                this.updateMovementState();
-                break;
-            case cc.macro.KEY.s:
-            case cc.macro.KEY.down:
-                this.isMovingDown = false;
-                this.updateMovementState();
-                break;
+        if (this.isDead) return;
+        if (this.currentState && typeof this.currentState.handleInput === 'function') {
+            this.currentState.handleInput(this, 'KEY_UP', event);
         }
     },
 
-    startMoveUp() {
-        this.isMovingUp = true;
-        this.updateMovementState();
-    },
-    stopMoveUp() {
-        if (!this.isMovingUp) return;
-        this.isMovingUp = false;
-        if (!this.isDead) this.updateMovementState();
-    },
-    startMoveDown() {
-        this.isMovingDown = true;
-        this.updateMovementState();
-    },
-    stopMoveDown() {
-        if (!this.isMovingDown) return;
-        this.isMovingDown = false;
-        if (!this.isDead) this.updateMovementState();
+    onTouchEvent(event, eventType, targetNode) { 
+        if (this.isDead) return;
+        this.lastOriginalInputEvent = event;
+        if (this.currentState && typeof this.currentState.handleInput === 'function') {
+            event.targetNode = targetNode;
+            this.currentState.handleInput(this, eventType, event);
+        }
     },
 
-    updateMovementState() {
-        if (this.isDead || this.isShooting || this.isInvincible) {
+    _performActualShoot(originalEvent = null) {
+        if (!this.bulletPrefab || !this.bulletSpawnPoint) {
+        
             return;
         }
-        if (this.isMovingUp && !this.isMovingDown) {
-            this.moveDirection = 1;
-            this.playAnimation(this.moveUpAnimName, true);
-        } else if (this.isMovingDown && !this.isMovingUp) {
-            this.moveDirection = -1;
-            this.playAnimation(this.moveDownAnimName, true);
-        } else {
-            this.moveDirection = 0;
-            this.playAnimation(this.idleAnimName, true);
+
+        const bullet = cc.instantiate(this.bulletPrefab);
+        const spawnPosWorld = this.bulletSpawnPoint.convertToWorldSpaceAR(cc.v2(0, 0));
+        const parentOfBullet = this.node.parent || cc.director.getScene(); 
+        const spawnPosLocal = parentOfBullet.convertToNodeSpaceAR(spawnPosWorld);
+
+        bullet.setPosition(spawnPosLocal);
+        parentOfBullet.addChild(bullet);
+
+        const bulletComp = bullet.getComponent('BulletController');
+        if (bulletComp) {
+            bulletComp.shootTowards(cc.v2(1, 0), this.bulletSpeed, spawnPosWorld);
+        } 
+        if (originalEvent && originalEvent.targetNode === this.actionButtonNode && this.actionButtonComponent && this.actionButtonComponent.interactable) {
+            this.simulateActionButtonVisuals(originalEvent);
         }
     },
+    
+    simulateActionButtonVisuals(originalEvent){
+        if (!this.actionButtonComponent || !this.actionButtonComponent.interactable) return;
 
-    performShootAndOrAction(originalEvent = null) {
-        if (this.isDead || this.isInvincible) return;
+        const originalScale = this.actionButtonNode.scale;
+        const originalColor = this.actionButtonNode.color;
 
-        if (this.shootAnimName) {
-            this.isShooting = true;
-            this.playAnimation(this.shootAnimName, false);
-
-            this.spineAnim.setCompleteListener((trackEntry) => {
-                if (trackEntry.animation.name === this.shootAnimName) {
-                    this.isShooting = false;
-                    if (!this.isDead) {
-                        this.updateMovementState();
-                    }
-                    this.spineAnim.setCompleteListener(null);
-                }
-            });
-        } else {
-            cc.warn("CharacterController: Tên animation 'shoot' chưa được cấu hình.");
+        if (this.actionButtonComponent.transition === cc.Button.Transition.SCALE && this.actionButtonComponent.zoomScale !== 1) {
+            this.actionButtonNode.scale = originalScale * this.actionButtonComponent.zoomScale;
+        } else if (this.actionButtonComponent.transition === cc.Button.Transition.COLOR) {
+            this.actionButtonNode.color = this.actionButtonComponent.pressedColor;
         }
 
-        if (this.bulletPrefab && this.bulletSpawnPoint) {
-            const bullet = cc.instantiate(this.bulletPrefab);
-            const spawnPosWorld = this.bulletSpawnPoint.convertToWorldSpaceAR(cc.v2(0, 0));
-            const parentOfBullet = this.node.parent || cc.director.getScene();
-            const spawnPosLocal = parentOfBullet.convertToNodeSpaceAR(spawnPosWorld);
-
-            bullet.setPosition(spawnPosLocal);
-            parentOfBullet.addChild(bullet);
-
-            const bulletComp = bullet.getComponent('BulletController');
-            if (bulletComp) {
-                bulletComp.shootTowards(cc.v2(1, 0), this.bulletSpeed,spawnPosWorld);
-            } else {
-                cc.warn("CharacterController: Prefab đạn không có script BulletController.");
-            }
-        } else {
-            cc.warn("CharacterController: Không thể bắn đạn do bulletPrefab hoặc bulletSpawnPoint chưa được gán.");
-        }
-
-        if (this.actionButtonComponent && this.actionButtonComponent.interactable) {
-            const originalScale = this.actionButtonNode.scale;
-            const originalColor = this.actionButtonNode.color;
+        this.scheduleOnce(() => {
+            if (!cc.isValid(this.actionButtonNode)) return;
 
             if (this.actionButtonComponent.transition === cc.Button.Transition.SCALE && this.actionButtonComponent.zoomScale !== 1) {
-                this.actionButtonNode.scale = originalScale * this.actionButtonComponent.zoomScale;
+                cc.tween(this.actionButtonNode).to(this.actionButtonComponent.duration, { scale: originalScale }).start();
             } else if (this.actionButtonComponent.transition === cc.Button.Transition.COLOR) {
-                this.actionButtonNode.color = this.actionButtonComponent.pressedColor;
+                 cc.tween(this.actionButtonNode).to(this.actionButtonComponent.duration, { color: originalColor }).start();
             }
-
-            this.scheduleOnce(() => {
-                if (!cc.isValid(this.actionButtonNode)) return;
-
-                if (this.actionButtonComponent.transition === cc.Button.Transition.SCALE && this.actionButtonComponent.zoomScale !== 1) {
-                    cc.tween(this.actionButtonNode)
-                        .to(this.actionButtonComponent.duration, { scale: originalScale })
-                        .start();
-                } else if (this.actionButtonComponent.transition === cc.Button.Transition.COLOR) {
-                    cc.tween(this.actionButtonNode)
-                        .to(this.actionButtonComponent.duration, { color: originalColor })
-                        .start();
-                }
-                if (this.actionButtonComponent.clickEvents && this.actionButtonComponent.clickEvents.length > 0) {
-                    cc.Component.EventHandler.emitEvents(this.actionButtonComponent.clickEvents, originalEvent);
-                } else {
-                    cc.log("CharacterController: Action Button không có Click Events nào được cấu hình.");
-                }
-            }, this.simulatedPressDuration);
-        }
+            if (this.actionButtonComponent.clickEvents && this.actionButtonComponent.clickEvents.length > 0) {
+                 cc.Component.EventHandler.emitEvents(this.actionButtonComponent.clickEvents, originalEvent);
+            }
+        }, this.simulatedPressDuration);
     },
 
-    triggerBombDropFromUI() {
+    handleBombDropKeyPress(originalEvent = null) {
         if (this.isDead || this.isInvincible) return;
 
+        if (this.canDropBombByKey) {
+            if (this.bombDropButtonNode && this.bombDropButtonComponent && this.bombDropButtonComponent.interactable) {
+                this.simulateBombDropVisualsAndAction(originalEvent); 
+                this.startBombCooldown();
+            } else {
+                this.triggerBombDropLogic();
+                this.startBombCooldown();
+            }
+        }
+    },
+    
+    handleBombDropButtonClick() { 
+        if (this.isDead || this.isInvincible) return;
+        if (this.canDropBombByKey) {
+            this.triggerBombDropLogic();
+            this.startBombCooldown();
+        } 
+    },
+
+    startBombCooldown() {
+        this.canDropBombByKey = false;
+        if (this.bombDropButtonComponent) this.bombDropButtonComponent.interactable = false;
+
+        this.scheduleOnce(() => {
+            this.canDropBombByKey = true;
+            if (this.bombDropButtonComponent) this.bombDropButtonComponent.interactable = true;
+        }, this.bombCooldown);
+    },
+    
+    triggerBombDropLogic() { 
         if (!this.bombPrefab) {
-            cc.warn("CharacterController: Không thể thả bom, 'bombPrefab' chưa được gán.");
+           
+            return;
+        }
+        const bomb = cc.instantiate(this.bombPrefab);
+        const parentForBomb = this.bombsContainerNode || this.node.parent || cc.director.getScene();
+        if (!parentForBomb) {
+           
             return;
         }
 
-        const bomb = cc.instantiate(this.bombPrefab);
-        const parentForBomb = this.bombsContainerNode ? this.bombsContainerNode : (this.node.parent || cc.director.getScene());
-        if (!parentForBomb) {
-            cc.error("CharacterController: Không tìm thấy Node cha hợp lệ để thả bom.");
-            return;
-        }
-        const offsetXPx = 1000;
-        const worldPosX = this.node.convertToWorldSpaceAR(cc.v2(offsetXPx, 0)).x;
-        const localSpawnPos = parentForBomb.convertToNodeSpaceAR(cc.v2(worldPosX, 0));
+      
+        const dropOffset = 150; 
+        const worldDropPos = this.node.convertToWorldSpaceAR(cc.v2(dropOffset, 0));
+        const localSpawnPos = parentForBomb.convertToNodeSpaceAR(worldDropPos);
+
         bomb.setPosition(localSpawnPos.x, this.bombSpawnHeight);
         parentForBomb.addChild(bomb);
 
         const bombComp = bomb.getComponent('BombController');
         if (bombComp) {
             bombComp.startFalling(this.bombFallSpeed);
-        } else {
-            cc.warn("CharacterController: Prefab bom không có script BombController. Cần cơ chế để bom rơi.");
-        }
+        } 
     },
-
-    simulateBombDropButtonClick(originalEvent = null) {
-        if (this.isDead) return;
+    
+    simulateBombDropVisualsAndAction(originalEvent = null) { 
         if (!this.bombDropButtonComponent || !this.bombDropButtonComponent.interactable) {
+            this.triggerBombDropLogic();
             return;
         }
+
         const originalScale = this.bombDropButtonNode.scale;
         const originalColor = this.bombDropButtonNode.color;
+
         if (this.bombDropButtonComponent.transition === cc.Button.Transition.SCALE && this.bombDropButtonComponent.zoomScale !== 1) {
             this.bombDropButtonNode.scale = originalScale * this.bombDropButtonComponent.zoomScale;
         } else if (this.bombDropButtonComponent.transition === cc.Button.Transition.COLOR) {
@@ -542,33 +440,36 @@ cc.Class({
             if (!cc.isValid(this.bombDropButtonNode)) return;
 
             if (this.bombDropButtonComponent.transition === cc.Button.Transition.SCALE && this.bombDropButtonComponent.zoomScale !== 1) {
-                cc.tween(this.bombDropButtonNode)
-                    .to(this.bombDropButtonComponent.duration, { scale: originalScale })
-                    .start();
+                cc.tween(this.bombDropButtonNode).to(this.bombDropButtonComponent.duration, { scale: originalScale }).start();
             } else if (this.bombDropButtonComponent.transition === cc.Button.Transition.COLOR) {
-                cc.tween(this.bombDropButtonNode)
-                    .to(this.bombDropButtonComponent.duration, { color: originalColor })
-                    .start();
+                cc.tween(this.bombDropButtonNode).to(this.bombDropButtonComponent.duration, { color: originalColor }).start();
             }
 
             if (this.bombDropButtonComponent.clickEvents && this.bombDropButtonComponent.clickEvents.length > 0) {
                 cc.Component.EventHandler.emitEvents(this.bombDropButtonComponent.clickEvents, originalEvent);
             } else {
-                this.triggerBombDropFromUI();
+                this.triggerBombDropLogic();
             }
         }, this.simulatedPressDuration);
     },
 
-
     onCollisionEnter: function (other, self) {
-        if (this.isDead || this.isInvincible) {
-            return;
-        }
-        if (other.node.group === 'monster') {
-            if (cc.isValid(other.node)) {
-                other.node.destroy();
+        if (this.currentState && typeof this.currentState.onCollisionEnter === 'function') {
+            this.currentState.onCollisionEnter(this, other, self);
+        } else {
+            if (this.isDead || this.isInvincible) return;
+            if (other.node.group === 'monster') {
+                if (cc.isValid(other.node)) {
+                    other.node.destroy();
+                    const monsterController = other.node.getComponent('EnemyController'); 
+                    if (monsterController && typeof monsterController.handleCollisionWithPlayer === 'function') {
+                        monsterController.handleCollisionWithPlayer(this.node);
+                    } else {
+                        other.node.destroy();
+                    }
+                }
+                this.takeDamage(1);
             }
-            this.takeDamage(1);
         }
     },
 
@@ -576,22 +477,4 @@ cc.Class({
         this.node.opacity = (this.node.opacity === this.originalOpacity) ? this.blinkOpacity : this.originalOpacity;
     },
 
-    startBlinkingEffect() {
-        if (this.isDead || this.isInvincible) return;
-        this.isInvincible = true;
-        this.node.opacity = this.originalOpacity;
-        this.schedule(this._performBlink, this.blinkInterval, cc.macro.REPEAT_FOREVER, 0);
-        this.scheduleOnce(() => {
-            this.stopBlinkingEffect();
-        }, this.invincibilityDuration);
-    },
-
-    stopBlinkingEffect() {
-        this.unschedule(this._performBlink);
-        this.node.opacity = this.originalOpacity;
-        this.isInvincible = false;
-        if (!this.isDead) {
-            this.updateMovementState();
-        }
-    }
 });
