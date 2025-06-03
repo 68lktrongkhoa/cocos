@@ -180,18 +180,6 @@
     "sync": false
   },
   {
-    "__type__": "0296cdR7VxC37j9L4L/YFH5",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "groundY": -100,
-    "lifeTime": 5,
-    "_id": ""
-  },
-  {
     "__type__": "cc.CircleCollider",
     "_name": "",
     "_objFlags": 0,
@@ -206,6 +194,18 @@
       "y": 0
     },
     "_radius": 900,
+    "_id": ""
+  },
+  {
+    "__type__": "9be1ej9Kn5Pz5/lL10D+Raa",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "groundY": -300,
+    "lifeTime": 5,
     "_id": ""
   },
   {
